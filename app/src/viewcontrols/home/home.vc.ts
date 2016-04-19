@@ -1,6 +1,7 @@
 import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
+import BandDashboard from '../banddashboard/banddashboard.vc';
 
 export default class HomeViewControl extends BaseViewControl {
     templateString: string = require('./home.vc.html');
@@ -23,6 +24,12 @@ export default class HomeViewControl extends BaseViewControl {
     bandLogin() {
         this.firebaseSvc.bandLogin(this.context.loginUsername).then((result) => {
             console.log("user found with key", result);
+            
+            this.navigator.navigate(BandDashboard, {
+                parameters: {
+                    key: result
+                }
+            }); 
         });
     }
 }
