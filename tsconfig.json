@@ -23,6 +23,7 @@
         "app/src/main.ts",
         "app/src/repositories/base/base.repo.ts",
         "app/src/services/base/base.svc.ts",
+        "app/src/services/firebase/firebase.svc.ts",
         "app/src/viewcontrols/bandcreateevent/bandcreateevent.vc.ts",
         "app/src/viewcontrols/banddashboard/banddashboard.vc.ts",
         "app/src/viewcontrols/bandeditprofile/bandeditprofile.vc.ts",

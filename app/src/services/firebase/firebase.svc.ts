@@ -49,7 +49,27 @@ export default class FirebaseService extends BaseService {
                 reject(err);
             }
         });
+    }
+    
+    bandGetInfo(key:string) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                var requestsFirebase = new Firebase("https://songrequests.firebaseio.com");
+                var bandsFirebase = requestsFirebase.child("bands");
 
+                bandsFirebase.once("value", (snapshot: any) => {
+                    var allBands = snapshot.val();
+                    
+                    fulfill(allBands[key]);
+
+                }, (errorObject: any) => {
+                    console.log("The read failed: " + errorObject.code);
+                });
+
+            } catch (err) {
+                reject(err);
+            }
+        });
     }
 }
 
