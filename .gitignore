@@ -28,6 +28,8 @@ node_modules
 
 # JS, css, and map files
 *.js
+!/app/lib/
+!/app/lib/*
 *.css
 *.map
 
