@@ -54,7 +54,7 @@ export default class FirebaseService extends BaseService {
     bandGetInfo(key:string) {
         return new this.Promise((fulfill, reject) => {
             try {
-                var requestsFirebase = new Firebase("https://songrequests.firebaseio.com");
+                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
                 var bandsFirebase = requestsFirebase.child("bands");
 
                 bandsFirebase.once("value", (snapshot: any) => {
