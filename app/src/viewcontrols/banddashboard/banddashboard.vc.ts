@@ -29,6 +29,7 @@ export default class BandDashboardViewControl extends BaseViewControl {
         this.firebaseSvc.bandGetInfo(key).then((result:any) => {
             console.log("band info:", result);
             this.context.bandUsername = result.username;
+            this.context.bandName = result.bandName;
         });
     }
 }

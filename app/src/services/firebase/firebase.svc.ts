@@ -5,19 +5,28 @@ declare var Firebase: any;
 
 export default class FirebaseService extends BaseService {
     
-    bandRegister(username:string) {
+    bandRegister(newUser:{username:string, bandName:string}) {
         return new this.Promise((fulfill, reject) => {
             try {
-                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
-                var bandsFirebase = requestsFirebase.child("bands");
                 
-                var newUserRef = bandsFirebase.push({
-                    username: username
+                // check to see if username already exists
+                this.bandLogin(newUser.username).then((result) => {
+                    // username exists.  reject promise.
+                    reject("user already exists");
+                }, (err) => {
+                    // username doesn't exist.  add user to firebase and fulfill promise.
+                    console.log(err);
+                    if (err == "user not found") {
+                        var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                        var bandsFirebase = requestsFirebase.child("bands");
+                        
+                        var newUserRef = bandsFirebase.push(newUser);
+                        
+                        var newUserKey = newUserRef.key();
+                        
+                        fulfill(newUserKey);
+                    }
                 });
-                
-                var newUserKey = newUserRef.key();
-                
-                fulfill(newUserKey);
 
             } catch (err) {
                 reject(err);
@@ -40,6 +49,8 @@ export default class FirebaseService extends BaseService {
                             fulfill(key);
                         }
                     }
+                    
+                    reject("user not found");
 
                 }, (errorObject: any) => {
                     console.log("The read failed: " + errorObject.code);

@@ -8,6 +8,7 @@ export default class HomeViewControl extends BaseViewControl {
 
     context: any = {
         registerUsername: "",
+        registerBandName: "",
         loginUsername: ""
     };
     
@@ -16,8 +17,15 @@ export default class HomeViewControl extends BaseViewControl {
     }
     
     bandRegister() {
-        this.firebaseSvc.bandRegister(this.context.registerUsername).then((result) => {
+        var newUser = {
+            username: this.context.registerUsername,
+            bandName: this.context.registerBandName
+        }
+        
+        this.firebaseSvc.bandRegister(newUser).then((result) => {
             console.log("added user to database with key", result)
+        }, (err) => {
+            console.log(err);
         });
     }
     
@@ -30,6 +38,8 @@ export default class HomeViewControl extends BaseViewControl {
                     key: result
                 }
             }); 
+        }, (err) => {
+            console.log(err);
         });
     }
 }
