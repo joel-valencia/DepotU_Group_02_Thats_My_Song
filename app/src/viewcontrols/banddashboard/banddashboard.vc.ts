@@ -15,7 +15,10 @@ export default class BandDashboardViewControl extends BaseViewControl {
     }
     
     navigatedTo(parameters:any) {
+        // put the key of our band in the context
         this.context.bandKey = parameters.key;
+        
+        // get band info with this key
         this.bandGetInfo(this.context.bandKey);
     }
     
@@ -26,8 +29,11 @@ export default class BandDashboardViewControl extends BaseViewControl {
     bandGetInfo(key:string) {
         console.log("looking up info for band with key", key);
         
+        // get band info from database
         this.firebaseSvc.bandGetInfo(key).then((result:any) => {
             console.log("band info:", result);
+            
+            //put band info in context
             this.context.bandUsername = result.username;
             this.context.bandName = result.bandName;
         });
