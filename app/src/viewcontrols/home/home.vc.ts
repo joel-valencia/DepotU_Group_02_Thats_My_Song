@@ -3,6 +3,8 @@ import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
 import BandDashboard from '../banddashboard/banddashboard.vc';
 
+declare var google:any;
+
 export default class HomeViewControl extends BaseViewControl {
     templateString: string = require('./home.vc.html');
 
@@ -14,6 +16,11 @@ export default class HomeViewControl extends BaseViewControl {
     
     constructor(private firebaseSvc:FirebaseService) {
         super();
+    }
+    
+    loaded() {
+        this.initMap();
+        navigator.geolocation.getCurrentPosition(console.log)
     }
     
     bandRegister() {
@@ -41,6 +48,19 @@ export default class HomeViewControl extends BaseViewControl {
         }, (err) => {
             console.log(err);
         });
+    }
+    
+    initMap() {
+            // var dumData: Array<Object> = [{
+            //     position1: {
+            //         lat: 
+            //     }
+            // }]
+            var mapDiv = document.getElementById('map');
+            var map = new google.maps.Map(mapDiv, {
+            center: {lat: 33.511, lng: -86.812},
+            zoom: 8
+            });
     }
 }
 
