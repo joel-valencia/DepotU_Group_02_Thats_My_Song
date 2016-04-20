@@ -3,6 +3,8 @@ import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
 import BandDashboardViewControl from '../banddashboard/banddashboard.vc'
 
+
+
 export default class BandEditProfileViewControl extends BaseViewControl {
     templateString: string = require('./bandeditprofile.vc.html');
 
@@ -10,7 +12,8 @@ export default class BandEditProfileViewControl extends BaseViewControl {
         bandUsername: '',
         bandName: '',
         bandDescription: '',
-        bandKey: ''
+        bandKey: '',
+        imgSrc: ''
     };
     
     constructor(private firebaseSvc:FirebaseService) {
@@ -54,6 +57,23 @@ export default class BandEditProfileViewControl extends BaseViewControl {
                 key: this.context.bandKey
             }
         })
+    }
+    showFile() {
+      var preview = <HTMLImageElement>document.querySelector('img');
+      let fileSelector = <HTMLInputElement>document.querySelector('input[type=file]');
+      var file = fileSelector.files[0];
+      var reader  = new FileReader();
+      var context = this.context;
+      
+      reader.addEventListener("load", function () {
+        preview.src = reader.result;
+        context.imgSrc = preview.src;
+        console.log(context.imgSrc);
+      }, false);
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
     }
 }
 
