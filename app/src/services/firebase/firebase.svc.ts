@@ -66,29 +66,51 @@ export default class FirebaseService extends BaseService {
         return new this.Promise((fulfill, reject) => {
             try {
                 var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
-                var bandsFirebase = requestsFirebase.child("bands");
+                var bandFirebase = requestsFirebase.child("bands/" + key);
 
-                bandsFirebase.once("value", (snapshot: any) => {
-                    var allBands = snapshot.val();
+                bandFirebase.once("value", (snapshot: any) => {                 
+                    fulfill(snapshot.val());
+
+                }, (errorObject: any) => {
+                    console.log("The read failed: " + errorObject.code);
+                });
+
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+    
+    bandGetSongList(key:string) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var bandFirebase = requestsFirebase.child("bands/" + key);
+
+                bandFirebase.once("value", (snapshot: any) => {
+                    var bandInfo = snapshot.val();
                     
                     // if song list exists, convert it to an array
-                    if ("songList" in allBands[key]) {
-                        var songListObject = allBands[key].songList;
+                    if ("songList" in bandInfo) {
+                        var songListObject = bandInfo.songList;
                         var songListArray:Array<{}> = []
-                        console.log("song list object:", songListObject);
                         
                         for (var i = 0; i < Object.keys(songListObject).length; i++ ) {
-                            songListArray.push(songListObject[Object.keys(songListObject)[i]]);
+                            var temp = songListObject[Object.keys(songListObject)[i]];
+                            temp.originalKey = Object.keys(songListObject)[i];
+                            songListArray.push(temp);
                         }
                         
                         console.log("song list array: ", songListArray);
-                        var modified = allBands[key];
+                        var modified = bandInfo;
                         modified.songList = songListArray;
                         
                         fulfill(modified);
+                    } else {
+                        fulfill([]);
                     }
                     
-                    fulfill(allBands[key]);
+                    
 
                 }, (errorObject: any) => {
                     console.log("The read failed: " + errorObject.code);
@@ -113,6 +135,26 @@ export default class FirebaseService extends BaseService {
                     artist: artist
                 }
                 songListFirebase.push(newSong);
+                
+                fulfill();
+
+
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+    
+    bandRemoveSong(bandKey:string, songKey:string) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+
+                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var songRef = requestsFirebase.child("bands/" + bandKey + "/songList/" + songKey);
+                
+                songRef.set(null);
+                
+                console.log("removed song at key", songKey);
                 
                 fulfill();
 

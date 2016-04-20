@@ -25,17 +25,27 @@ export default class BandDashboardViewControl extends BaseViewControl {
         
         // get band info with this key
         this.bandGetInfo(this.context.bandKey);
+        
+        // get song list
+        this.bandGetSongList(this.context.bandKey);
     }
     
     loaded() {
         
     }
+    
     goToEdit() {
         this.navigator.navigate(BandEditProfileViewControl, {
             parameters: {
                 key: this.context.bandKey
             }
         })
+    }
+    
+    bandGetSongList(key:string) {
+        this.firebaseSvc.bandGetSongList(key).then((result:any) => {
+            this.context.songList = result.songList;
+        });
     }
     
     bandGetInfo(key:string) {
@@ -49,14 +59,6 @@ export default class BandDashboardViewControl extends BaseViewControl {
             this.context.bandUsername = result.username;
             this.context.bandName = result.bandName;
             this.context.bandDescription = result.bandDescription;
-            this.context.songList = result.songList;
-            
-            //put song list in context
-            if ("songList" in result) {
-                this.context.songList = result.songList;
-            } else {
-                console.log("song list doesn't exist yet");
-            }
         });
     }
     
@@ -69,7 +71,16 @@ export default class BandDashboardViewControl extends BaseViewControl {
             console.log("added song");
             this.context.addSongTitle = "";
             this.context.addSongArtist = "";
-            this.bandGetInfo(this.context.bandKey);
+            this.bandGetSongList(this.context.bandKey);
+        });
+    }
+    
+    bandRemoveSong(key:string) {
+        var bandKey = this.context.bandKey;
+        var songKey = key;
+        
+        this.firebaseSvc.bandRemoveSong(bandKey, songKey).then((result:any) => {
+            this.bandGetSongList(this.context.bandKey);
         });
     }
 }
