@@ -1,3 +1,17 @@
 <h4>logged in as {{ bandUsername }}</h4>
 
 <h3>{{ bandName }}</h3>
+
+
+
+<h4>song list</h4>
+
+<plat-input type="text" placeholder="title" plat-bind="addSongTitle"></plat-input>
+<plat-input type="text" placeholder="artist" plat-bind="addSongArtist"></plat-input>
+<plat-button class="button-primary" plat-tap="bandAddSong()">add song</plat-button>
+
+
+<plat-foreach plat-context="songList">
+    {{ title }} - {{ artist }}<br>
+    
+</plat-foreach>
