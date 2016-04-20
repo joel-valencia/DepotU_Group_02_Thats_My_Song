@@ -45,6 +45,7 @@ export default class BandDashboardViewControl extends BaseViewControl {
             //put band info in context
             this.context.bandUsername = result.username;
             this.context.bandName = result.bandName;
+            this.context.bandDescription = result.bandDescription;
         });
     }
 }

@@ -30,7 +30,8 @@ export default class HomeViewControl extends BaseViewControl {
     bandRegister() {
         var newUser = {
             username: this.context.registerUsername,
-            bandName: this.context.registerBandName
+            bandName: this.context.registerBandName,
+            bandDescription: 'Tell Us About Your Band'
         }
         
         this.firebaseSvc.bandRegister(newUser).then((result) => {
