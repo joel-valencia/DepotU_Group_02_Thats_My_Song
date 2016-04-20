@@ -62,7 +62,7 @@ export default class FirebaseService extends BaseService {
         });
     }
     
-    bandGetInfo(key:string) {
+    bandGetInfo(key: string) {
         return new this.Promise((fulfill, reject) => {
             try {
                 var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
@@ -81,6 +81,21 @@ export default class FirebaseService extends BaseService {
                 reject(err);
             }
         });
+    }
+    updateInfo(key: string, newInfo: {bandName: string}) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                var requestsFirebase = new Firebase('https://song-requests.firebaseio.com');
+                var bandFirebase = requestsFirebase.child('bands/' + key);
+                
+                bandFirebase.update(newInfo);
+                
+                fulfill("updated info");
+                
+            } catch (err) {
+                reject(err);
+            }
+        })
     }
 }
 

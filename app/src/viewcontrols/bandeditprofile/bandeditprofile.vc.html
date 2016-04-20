@@ -1,5 +1,7 @@
-<h3> {{ bandName }} </h3>
+<h3 plat-bind='bandName'> {{ bandName }} </h3>
 
-<textarea id="" cols="30" rows="10" plat-bind='bandDescription' placeholder='Description'></textarea>
+<textarea id="" cols="30" rows="10" plat-bind='bandDescription' placeholder='Description'> {{ bandDescription }}</textarea>
+<br><br>
+<plat-button plat-tap='updateInfo()'>Save Changes</plat-button>
 
-<h1> {{ bandDescription }} </h1>
+

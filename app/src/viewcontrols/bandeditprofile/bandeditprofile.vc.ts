@@ -35,6 +35,17 @@ export default class BandEditProfileViewControl extends BaseViewControl {
             this.context.bandName = result.bandName;
         });
     }
+    updateInfo() {
+        var newInfo = {
+            bandName: this.context.bandName
+        }
+        
+        this.firebaseSvc.updateInfo(this.context.bandKey, newInfo).then((success) => {
+            console.log(success);
+        }, (err) => {
+            console.log(err);
+        })
+    }
 }
 
 register.viewControl('bandeditprofile-vc', BandEditProfileViewControl, [FirebaseService]);
