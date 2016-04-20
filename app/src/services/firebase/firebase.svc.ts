@@ -96,7 +96,9 @@ export default class FirebaseService extends BaseService {
                         var songListArray:Array<{}> = []
                         
                         for (var i = 0; i < Object.keys(songListObject).length; i++ ) {
-                            songListArray.push(songListObject[Object.keys(songListObject)[i]]);
+                            var temp = songListObject[Object.keys(songListObject)[i]];
+                            temp.originalKey = Object.keys(songListObject)[i];
+                            songListArray.push(temp);
                         }
                         
                         console.log("song list array: ", songListArray);
