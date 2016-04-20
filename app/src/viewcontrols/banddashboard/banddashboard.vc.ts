@@ -10,12 +10,16 @@ export default class BandDashboardViewControl extends BaseViewControl {
         bandKey: "",
         bandUsername: "",
 <<<<<<< HEAD
+<<<<<<< HEAD
         songList: [],
         addSongTitle: "",
         addSongArtist: ""
 =======
         bandDescription: ""
 >>>>>>> 17678bf0e4d5f0e6c85e168c9275805642d18429
+=======
+        bandDescription: ""
+>>>>>>> d6a586e8e4e2e9f1617ef121da8380c472c47f98
     };
     
     constructor(private firebaseSvc:FirebaseService) {
@@ -52,6 +56,7 @@ export default class BandDashboardViewControl extends BaseViewControl {
             this.context.bandUsername = result.username;
             this.context.bandName = result.bandName;
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.context.songList = result.songList;
             
             //put song list in context
@@ -76,6 +81,9 @@ export default class BandDashboardViewControl extends BaseViewControl {
 =======
             this.context.bandDescription = result.bandDescription;
 >>>>>>> 17678bf0e4d5f0e6c85e168c9275805642d18429
+=======
+            this.context.bandDescription = result.bandDescription;
+>>>>>>> d6a586e8e4e2e9f1617ef121da8380c472c47f98
         });
     }
 }

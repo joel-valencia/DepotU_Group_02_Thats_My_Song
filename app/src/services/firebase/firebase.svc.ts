@@ -100,6 +100,7 @@ export default class FirebaseService extends BaseService {
         });
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     
     bandAddSong(key:string, title:string, artist:string) {
         return new this.Promise((fulfill, reject) => {
@@ -123,6 +124,8 @@ export default class FirebaseService extends BaseService {
             }
         });
 =======
+=======
+>>>>>>> d6a586e8e4e2e9f1617ef121da8380c472c47f98
     updateInfo(key: string, newInfo: {bandName: string}) {
         return new this.Promise((fulfill, reject) => {
             try {
@@ -137,7 +140,10 @@ export default class FirebaseService extends BaseService {
                 reject(err);
             }
         })
+<<<<<<< HEAD
 >>>>>>> 17678bf0e4d5f0e6c85e168c9275805642d18429
+=======
+>>>>>>> d6a586e8e4e2e9f1617ef121da8380c472c47f98
     }
 }
 
