@@ -69,13 +69,32 @@ export default class FirebaseService extends BaseService {
                 var bandsFirebase = requestsFirebase.child("bands");
 
                 bandsFirebase.once("value", (snapshot: any) => {
+                    var allBands = snapshot.val();                  
+                    fulfill(allBands[key]);
+
+                }, (errorObject: any) => {
+                    console.log("The read failed: " + errorObject.code);
+                });
+
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+    
+    bandGetSongList(key:string) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var bandsFirebase = requestsFirebase.child("bands");
+
+                bandsFirebase.once("value", (snapshot: any) => {
                     var allBands = snapshot.val();
                     
                     // if song list exists, convert it to an array
                     if ("songList" in allBands[key]) {
                         var songListObject = allBands[key].songList;
                         var songListArray:Array<{}> = []
-                        console.log("song list object:", songListObject);
                         
                         for (var i = 0; i < Object.keys(songListObject).length; i++ ) {
                             songListArray.push(songListObject[Object.keys(songListObject)[i]]);
@@ -86,9 +105,11 @@ export default class FirebaseService extends BaseService {
                         modified.songList = songListArray;
                         
                         fulfill(modified);
+                    } else {
+                        fulfill([]);
                     }
                     
-                    fulfill(allBands[key]);
+                    
 
                 }, (errorObject: any) => {
                     console.log("The read failed: " + errorObject.code);
