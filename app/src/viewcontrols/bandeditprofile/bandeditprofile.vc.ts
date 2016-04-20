@@ -1,10 +1,7 @@
 import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
-<<<<<<< HEAD
-=======
 import BandDashboardViewControl from '../banddashboard/banddashboard.vc'
->>>>>>> d6a586e8e4e2e9f1617ef121da8380c472c47f98
 
 export default class BandEditProfileViewControl extends BaseViewControl {
     templateString: string = require('./bandeditprofile.vc.html');
@@ -51,15 +48,12 @@ export default class BandEditProfileViewControl extends BaseViewControl {
         }, (err) => {
             console.log(err);
         })
-<<<<<<< HEAD
-=======
         
         this.navigator.navigate(BandDashboardViewControl, {
             parameters: {
                 key: this.context.bandKey
             }
         })
->>>>>>> d6a586e8e4e2e9f1617ef121da8380c472c47f98
     }
 }
 
