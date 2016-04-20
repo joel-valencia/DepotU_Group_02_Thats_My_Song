@@ -11,16 +11,20 @@ export default class HomeViewControl extends BaseViewControl {
     context: any = {
         registerUsername: "",
         registerBandName: "",
-        loginUsername: ""
+        loginUsername: "",
+        lat: 0,
+        lng: 0
     };
     
     constructor(private firebaseSvc:FirebaseService) {
         super();
+        
     }
     
     loaded() {
-        this.initMap();
-        navigator.geolocation.getCurrentPosition(console.log)
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
+        }
     }
     
     bandRegister() {
@@ -51,16 +55,23 @@ export default class HomeViewControl extends BaseViewControl {
     }
     
     initMap() {
-            // var dumData: Array<Object> = [{
-            //     position1: {
-            //         lat: 
-            //     }
-            // }]
             var mapDiv = document.getElementById('map');
             var map = new google.maps.Map(mapDiv, {
-            center: {lat: 33.511, lng: -86.812},
-            zoom: 8
+            center: {lat: this.context.lat, lng: this.context.lng},
+            zoom: 13
             });
+            var marker = new google.maps.Marker({
+               position: {lat: this.context.lat, lng: this.context.lng},
+               map: map,
+               title: 'Hello World!' 
+            });
+    }
+    setPosition(position: any) {
+        this.context.lat = position.coords.latitude;
+        this.context.lng = position.coords.longitude;
+        console.log(this.context.lat);
+        this.initMap();
+        
     }
 }
 
