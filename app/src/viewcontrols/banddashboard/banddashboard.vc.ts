@@ -1,13 +1,18 @@
 import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
+import BandEditProfileViewControl from '../bandeditprofile/bandeditprofile.vc'
 
 export default class BandDashboardViewControl extends BaseViewControl {
     templateString: string = require('./banddashboard.vc.html');
 
     context: any = {
         bandKey: "",
-        bandUsername: ""
+        bandUsername: "",
+        bandDescription: "",
+        songList: [],
+        addSongTitle: "",
+        addSongArtist: ""
     };
     
     constructor(private firebaseSvc:FirebaseService) {
@@ -25,6 +30,13 @@ export default class BandDashboardViewControl extends BaseViewControl {
     loaded() {
         
     }
+    goToEdit() {
+        this.navigator.navigate(BandEditProfileViewControl, {
+            parameters: {
+                key: this.context.bandKey
+            }
+        })
+    }
     
     bandGetInfo(key:string) {
         console.log("looking up info for band with key", key);
@@ -36,6 +48,28 @@ export default class BandDashboardViewControl extends BaseViewControl {
             //put band info in context
             this.context.bandUsername = result.username;
             this.context.bandName = result.bandName;
+            this.context.bandDescription = result.bandDescription;
+            this.context.songList = result.songList;
+            
+            //put song list in context
+            if ("songList" in result) {
+                this.context.songList = result.songList;
+            } else {
+                console.log("song list doesn't exist yet");
+            }
+        });
+    }
+    
+    bandAddSong() {
+        var key = this.context.bandKey;
+        var title = this.context.addSongTitle;
+        var artist = this.context.addSongArtist;
+        
+        this.firebaseSvc.bandAddSong(key, title, artist).then((result:any) => {
+            console.log("added song");
+            this.context.addSongTitle = "";
+            this.context.addSongArtist = "";
+            this.bandGetInfo(this.context.bandKey);
         });
     }
 }

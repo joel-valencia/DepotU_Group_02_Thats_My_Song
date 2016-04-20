@@ -62,7 +62,7 @@ export default class FirebaseService extends BaseService {
         });
     }
     
-    bandGetInfo(key:string) {
+    bandGetInfo(key: string) {
         return new this.Promise((fulfill, reject) => {
             try {
                 var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
@@ -70,6 +70,23 @@ export default class FirebaseService extends BaseService {
 
                 bandsFirebase.once("value", (snapshot: any) => {
                     var allBands = snapshot.val();
+                    
+                    // if song list exists, convert it to an array
+                    if ("songList" in allBands[key]) {
+                        var songListObject = allBands[key].songList;
+                        var songListArray:Array<{}> = []
+                        console.log("song list object:", songListObject);
+                        
+                        for (var i = 0; i < Object.keys(songListObject).length; i++ ) {
+                            songListArray.push(songListObject[Object.keys(songListObject)[i]]);
+                        }
+                        
+                        console.log("song list array: ", songListArray);
+                        var modified = allBands[key];
+                        modified.songList = songListArray;
+                        
+                        fulfill(modified);
+                    }
                     
                     fulfill(allBands[key]);
 
@@ -81,6 +98,45 @@ export default class FirebaseService extends BaseService {
                 reject(err);
             }
         });
+    }
+    
+    bandAddSong(key:string, title:string, artist:string) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+
+                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var bandFirebase = requestsFirebase.child("bands/" + key);
+                var songListFirebase = bandFirebase.child("songList");
+                
+                var newSong = {
+                    title: title,
+                    artist: artist
+                }
+                songListFirebase.push(newSong);
+                
+                fulfill();
+
+
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+
+    updateInfo(key: string, newInfo: {bandName: string}) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                var requestsFirebase = new Firebase('https://song-requests.firebaseio.com');
+                var bandFirebase = requestsFirebase.child('bands/' + key);
+                
+                bandFirebase.update(newInfo);
+                
+                fulfill("updated info");
+                
+            } catch (err) {
+                reject(err);
+            }
+        })
     }
 }
 

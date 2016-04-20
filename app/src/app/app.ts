@@ -17,7 +17,7 @@ export default class MyApp extends App {
             { pattern: '', view: HomeViewControl },
             { pattern: 'createevent', view: BandCreateEventViewControl },
             { pattern: 'dashboard/:key', view: BandDashboard },
-            { pattern: 'editprofile', view: BandEditProfileViewControl },
+            { pattern: 'editprofile/:key', view: BandEditProfileViewControl },
             { pattern: 'requestedsongs', view: BandRequestedSongsViewControl },
             { pattern: 'findevent', view: UserFindEventViewControl },
             { pattern: 'requestsong', view: UserRequestSongViewControl },
