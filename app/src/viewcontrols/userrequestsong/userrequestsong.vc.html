@@ -1,1 +1,57 @@
-<h1>Hello World!</h1>
+<div class="coverphoto">
+    <img src="" alt="">
+    <div class="navbar">
+        <ul>
+            <li><plat-button>Home<a href=""></a></plat-button></li>
+            <li><plat-button>Find a Show<a href=""></a></plat-button></li>
+            <li><plat-button>Request Song<a href=""></a></plat-button></li>
+            <li><plat-button>Media<a href=""></a></plat-button></li>
+        </ul>
+    </div>
+</div>
+
+<h1>(request song page)</h1>
+<h3>What {{song}}would you like to hear{{band}})play?</h3>
+<div class="listContainer">
+    <table>
+        <tr>
+            <td>
+                <h4 id="songName">{{song}}Song</h4>  
+            </td>
+            <td>      
+                <plat-button plat-tap="addSong()">"Request"</plat-button>      
+            </td>
+    </tr>
+    <br>
+        <tr>
+            <td>
+                <h4 id="songName">{{song}}Song</h4>
+            </td>
+            <td>  
+                <plat-button plat-tap="addSong()">"Request"</plat-button>
+            </td>
+    </tr>
+    <br>
+        <tr>
+            <td>
+                <h4 id="songName">{{song}}Song</h4>
+            </td>
+            <td>  
+                <plat-button plat-tap="addSong()">"Request"</plat-button>
+            </td>
+    </tr>
+    <br>
+        <tr>     
+            <td><h4>Other Song?</h4>
+                <input type="Don't see your song on the list? What is it?'">   
+            </td>
+            <td>      
+                <plat-button ng-click="addSong()">"Request"</plat-button>      
+            </td>
+        </tr>
+    </table>
+    <br>
+    <br>
+</div>
+
+
