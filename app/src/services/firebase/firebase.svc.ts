@@ -144,6 +144,26 @@ export default class FirebaseService extends BaseService {
             }
         });
     }
+    
+    bandRemoveSong(bandKey:string, songKey:string) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+
+                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var songRef = requestsFirebase.child("bands/" + bandKey + "/songList/" + songKey);
+                
+                songRef.set(null);
+                
+                console.log("removed song at key", songKey);
+                
+                fulfill();
+
+
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
 
     updateInfo(key: string, newInfo: {bandName: string}) {
         return new this.Promise((fulfill, reject) => {
