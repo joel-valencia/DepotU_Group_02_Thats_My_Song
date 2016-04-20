@@ -1,6 +1,7 @@
 import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
+import BandEditProfileViewControl from '../bandeditprofile/bandeditprofile.vc'
 
 export default class BandDashboardViewControl extends BaseViewControl {
     templateString: string = require('./banddashboard.vc.html');
@@ -8,9 +9,13 @@ export default class BandDashboardViewControl extends BaseViewControl {
     context: any = {
         bandKey: "",
         bandUsername: "",
+<<<<<<< HEAD
         songList: [],
         addSongTitle: "",
         addSongArtist: ""
+=======
+        bandDescription: ""
+>>>>>>> 17678bf0e4d5f0e6c85e168c9275805642d18429
     };
     
     constructor(private firebaseSvc:FirebaseService) {
@@ -28,6 +33,13 @@ export default class BandDashboardViewControl extends BaseViewControl {
     loaded() {
         
     }
+    goToEdit() {
+        this.navigator.navigate(BandEditProfileViewControl, {
+            parameters: {
+                key: this.context.bandKey
+            }
+        })
+    }
     
     bandGetInfo(key:string) {
         console.log("looking up info for band with key", key);
@@ -39,6 +51,7 @@ export default class BandDashboardViewControl extends BaseViewControl {
             //put band info in context
             this.context.bandUsername = result.username;
             this.context.bandName = result.bandName;
+<<<<<<< HEAD
             this.context.songList = result.songList;
             
             //put song list in context
@@ -60,6 +73,9 @@ export default class BandDashboardViewControl extends BaseViewControl {
             this.context.addSongTitle = "";
             this.context.addSongArtist = "";
             this.bandGetInfo(this.context.bandKey);
+=======
+            this.context.bandDescription = result.bandDescription;
+>>>>>>> 17678bf0e4d5f0e6c85e168c9275805642d18429
         });
     }
 }

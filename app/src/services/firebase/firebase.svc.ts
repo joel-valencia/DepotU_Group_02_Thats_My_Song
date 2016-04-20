@@ -62,7 +62,7 @@ export default class FirebaseService extends BaseService {
         });
     }
     
-    bandGetInfo(key:string) {
+    bandGetInfo(key: string) {
         return new this.Promise((fulfill, reject) => {
             try {
                 var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
@@ -99,6 +99,7 @@ export default class FirebaseService extends BaseService {
             }
         });
     }
+<<<<<<< HEAD
     
     bandAddSong(key:string, title:string, artist:string) {
         return new this.Promise((fulfill, reject) => {
@@ -121,6 +122,22 @@ export default class FirebaseService extends BaseService {
                 reject(err);
             }
         });
+=======
+    updateInfo(key: string, newInfo: {bandName: string}) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                var requestsFirebase = new Firebase('https://song-requests.firebaseio.com');
+                var bandFirebase = requestsFirebase.child('bands/' + key);
+                
+                bandFirebase.update(newInfo);
+                
+                fulfill("updated info");
+                
+            } catch (err) {
+                reject(err);
+            }
+        })
+>>>>>>> 17678bf0e4d5f0e6c85e168c9275805642d18429
     }
 }
 
