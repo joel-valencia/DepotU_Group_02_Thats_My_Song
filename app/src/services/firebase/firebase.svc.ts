@@ -66,11 +66,10 @@ export default class FirebaseService extends BaseService {
         return new this.Promise((fulfill, reject) => {
             try {
                 var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
-                var bandsFirebase = requestsFirebase.child("bands");
+                var bandFirebase = requestsFirebase.child("bands/" + key);
 
-                bandsFirebase.once("value", (snapshot: any) => {
-                    var allBands = snapshot.val();                  
-                    fulfill(allBands[key]);
+                bandFirebase.once("value", (snapshot: any) => {                 
+                    fulfill(snapshot.val());
 
                 }, (errorObject: any) => {
                     console.log("The read failed: " + errorObject.code);
@@ -86,14 +85,14 @@ export default class FirebaseService extends BaseService {
         return new this.Promise((fulfill, reject) => {
             try {
                 var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
-                var bandsFirebase = requestsFirebase.child("bands");
+                var bandFirebase = requestsFirebase.child("bands/" + key);
 
-                bandsFirebase.once("value", (snapshot: any) => {
-                    var allBands = snapshot.val();
+                bandFirebase.once("value", (snapshot: any) => {
+                    var bandInfo = snapshot.val();
                     
                     // if song list exists, convert it to an array
-                    if ("songList" in allBands[key]) {
-                        var songListObject = allBands[key].songList;
+                    if ("songList" in bandInfo) {
+                        var songListObject = bandInfo.songList;
                         var songListArray:Array<{}> = []
                         
                         for (var i = 0; i < Object.keys(songListObject).length; i++ ) {
@@ -101,7 +100,7 @@ export default class FirebaseService extends BaseService {
                         }
                         
                         console.log("song list array: ", songListArray);
-                        var modified = allBands[key];
+                        var modified = bandInfo;
                         modified.songList = songListArray;
                         
                         fulfill(modified);
