@@ -26,10 +26,9 @@ export default class HomeViewControl extends BaseViewControl {
     
     navigatedTo() {
         this.context.loggedInBandKey = this.sessionSvc.checkLoggedInBand();
-        console.log("logged in:", this.context.loggedInBandKey);
+        console.log("logged in user key:", this.context.loggedInBandKey);
         
         if (this.context.loggedInBandKey !== "null") {
-            console.log("set loggedIn to true");
             this.context.loggedIn = true;
         }
     }
