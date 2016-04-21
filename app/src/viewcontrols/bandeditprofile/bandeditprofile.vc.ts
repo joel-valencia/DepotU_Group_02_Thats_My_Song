@@ -44,6 +44,7 @@ export default class BandEditProfileViewControl extends BaseViewControl {
         });
     }
     updateInfo() {
+        this.imageConfirm();
         var newInfo = {
             bandName: this.context.bandName,
             bandDescription: this.context.bandDescription,
