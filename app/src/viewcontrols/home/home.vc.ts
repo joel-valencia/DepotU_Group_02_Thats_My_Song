@@ -31,7 +31,8 @@ export default class HomeViewControl extends BaseViewControl {
         var newUser = {
             username: this.context.registerUsername,
             bandName: this.context.registerBandName,
-            bandDescription: 'Tell Us About Your Band'
+            bandDescription: 'Tell Us About Your Band',
+            bandImgUrl: 'default'
         }
         
         this.firebaseSvc.bandRegister(newUser).then((result) => {
@@ -55,6 +56,24 @@ export default class HomeViewControl extends BaseViewControl {
         });
     }
     
+
+    
+    bandAddSong() {
+        var key = this.context.bandKey;
+        var title = this.context.addSongTitle;
+        var artist = this.context.addSongArtist;
+        
+        this.firebaseSvc.bandAddSong(key, title, artist).then((result:any) => {
+            console.log("added song");
+            this.context.addSongTitle = "";
+            this.context.addSongArtist = "";
+            this.bandGetSongList(this.context.bandKey);
+        });
+    }
+    
+    
+    
+    
     initMap() {
             var mapDiv = document.getElementById('map');
             var map = new google.maps.Map(mapDiv, {
@@ -77,3 +96,5 @@ export default class HomeViewControl extends BaseViewControl {
 }
 
 register.viewControl('home-vc', HomeViewControl, [FirebaseService]);
+
+
