@@ -82,8 +82,8 @@ export default class BandEditProfileViewControl extends BaseViewControl {
     imageConfirm() {
         var img = <HTMLImageElement> document.getElementById('preview');
         
-        var MAX_WIDTH = 200;
-        var MAX_HEIGHT = 150;
+        var MAX_WIDTH = 800;
+        var MAX_HEIGHT = 600;
         var width = img.width;
         var height = img.height;
         
