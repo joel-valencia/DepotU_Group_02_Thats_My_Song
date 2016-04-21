@@ -38,12 +38,14 @@ export default class BandEditProfileViewControl extends BaseViewControl {
             this.context.bandUsername = result.username;
             this.context.bandName = result.bandName;
             this.context.bandDescription = result.bandDescription;
+            this.context.bandImgUrl = result.bandImgUrl;
         });
     }
     updateInfo() {
         var newInfo = {
             bandName: this.context.bandName,
-            bandDescription: this.context.bandDescription
+            bandDescription: this.context.bandDescription,
+            bandImgUrl: this.context.imgSrc
         }
         
         this.firebaseSvc.updateInfo(this.context.bandKey, newInfo).then((success) => {
@@ -64,6 +66,7 @@ export default class BandEditProfileViewControl extends BaseViewControl {
       var file = fileSelector.files[0];
       var reader  = new FileReader();
       var context = this.context;
+      
       
       reader.addEventListener("load", function () {
         preview.src = reader.result;

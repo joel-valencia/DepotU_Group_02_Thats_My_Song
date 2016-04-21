@@ -12,7 +12,8 @@ export default class BandDashboardViewControl extends BaseViewControl {
         bandDescription: "",
         songList: [],
         addSongTitle: "",
-        addSongArtist: ""
+        addSongArtist: "",
+        bandImgUrl: ''
     };
     
     constructor(private firebaseSvc:FirebaseService) {
@@ -59,6 +60,7 @@ export default class BandDashboardViewControl extends BaseViewControl {
             this.context.bandUsername = result.username;
             this.context.bandName = result.bandName;
             this.context.bandDescription = result.bandDescription;
+            this.context.bandImgUrl = result.bandImgUrl;
         });
     }
     
