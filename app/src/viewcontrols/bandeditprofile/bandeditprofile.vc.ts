@@ -25,6 +25,7 @@ export default class BandEditProfileViewControl extends BaseViewControl {
         
         // get band info with this key
         this.bandGetInfo(this.context.bandKey);
+
     }
     
     bandGetInfo(key:string) {
@@ -39,6 +40,7 @@ export default class BandEditProfileViewControl extends BaseViewControl {
             this.context.bandName = result.bandName;
             this.context.bandDescription = result.bandDescription;
             this.context.bandImgUrl = result.bandImgUrl;
+            this.context.imgSrc = result.bandImgUrl;
         });
     }
     updateInfo() {
@@ -65,14 +67,10 @@ export default class BandEditProfileViewControl extends BaseViewControl {
       let fileSelector = <HTMLInputElement>document.querySelector('input[type=file]');
       var file = fileSelector.files[0];
       var reader  = new FileReader();
-      var context = this.context;
-      
-      
+ 
+           
       reader.addEventListener("load", function () {
         preview.src = reader.result;
-        // context.imgSrc = preview.src;
-        console.log(context.imgSrc);
-    
       }, false);
 
       if (file) {
@@ -80,7 +78,7 @@ export default class BandEditProfileViewControl extends BaseViewControl {
       }
     
     }
-    test() {
+    imageConfirm() {
         var img = <HTMLImageElement> document.getElementById('preview');
         
         var MAX_WIDTH = 200;

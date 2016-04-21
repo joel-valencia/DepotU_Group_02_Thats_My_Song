@@ -4,11 +4,11 @@
 <br><br>
 <input type="file" plat-react="showFile()"><br>
 <img id='preview' src=" {{ bandImgUrl }}" height="200" alt="Image preview...">
+<br>
+<plat-button class='button-primary' plat-tap='imageConfirm()'>Save As Profile Picture</plat-button>
+<canvas id="myCanvas" style="border:1px solid #000000; display: none"></canvas>
 <br><br>
-<plat-button plat-tap='updateInfo()'>Save Changes</plat-button>
-<br><br>
-<plat-button plat-tap='test()'>Test</plat-button>
-<canvas id="myCanvas" style="border:1px solid #000000;"></canvas>
+<plat-button class='button-success' plat-tap='updateInfo()'>Save Changes</plat-button>
 
 
 
