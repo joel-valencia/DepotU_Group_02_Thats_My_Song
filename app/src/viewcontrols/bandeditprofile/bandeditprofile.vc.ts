@@ -70,13 +70,42 @@ export default class BandEditProfileViewControl extends BaseViewControl {
       
       reader.addEventListener("load", function () {
         preview.src = reader.result;
-        context.imgSrc = preview.src;
+        // context.imgSrc = preview.src;
         console.log(context.imgSrc);
+    
       }, false);
 
       if (file) {
         reader.readAsDataURL(file);
       }
+    
+    }
+    test() {
+        var img = <HTMLImageElement> document.getElementById('preview');
+        
+        var MAX_WIDTH = 200;
+        var MAX_HEIGHT = 150;
+        var width = img.width;
+        var height = img.height;
+        
+        if (width > height) {
+        if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+        }
+        } else {
+        if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height;
+            height = MAX_HEIGHT;
+        }
+        }
+        var canvas = <HTMLCanvasElement> document.getElementById('myCanvas');
+        canvas.width = width;
+        canvas.height = height;
+      
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      this.context.imgSrc = canvas.toDataURL('img');
     }
 }
 

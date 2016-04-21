@@ -3,8 +3,12 @@
 <textarea id="" cols="30" rows="10" plat-bind='bandDescription' placeholder='Description'> {{ bandDescription }}</textarea>
 <br><br>
 <input type="file" plat-react="showFile()"><br>
-<img src=" {{ bandImgUrl }}" height="200" alt="Image preview...">
+<img id='preview' src=" {{ bandImgUrl }}" height="200" alt="Image preview...">
 <br><br>
 <plat-button plat-tap='updateInfo()'>Save Changes</plat-button>
+<br><br>
+<plat-button plat-tap='test()'>Test</plat-button>
+<canvas id="myCanvas" style="border:1px solid #000000;"></canvas>
+
 
 
