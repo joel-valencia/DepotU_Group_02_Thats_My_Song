@@ -15,7 +15,8 @@ export default class HomeViewControl extends BaseViewControl {
         loginUsername: "",
         lat: 0,
         lng: 0,
-        loggedIn: false
+        loggedIn: false,
+        loggedInBandKey: ""
     };
     
     constructor(private firebaseSvc:FirebaseService, private sessionSvc:SessionService) {
@@ -24,10 +25,10 @@ export default class HomeViewControl extends BaseViewControl {
     }
     
     navigatedTo() {
-        var loggedInBandKey = this.sessionSvc.checkLoggedInBand();
-        console.log("logged in:", loggedInBandKey);
+        this.context.loggedInBandKey = this.sessionSvc.checkLoggedInBand();
+        console.log("logged in:", this.context.loggedInBandKey);
         
-        if (loggedInBandKey !== "null") {
+        if (this.context.loggedInBandKey !== "null") {
             console.log("set loggedIn to true");
             this.context.loggedIn = true;
         }
@@ -74,6 +75,14 @@ export default class HomeViewControl extends BaseViewControl {
         this.sessionSvc.logOutBand();
         this.context.loggedIn = false;
         console.log("logged out");
+    }
+    
+    goToDashboard() {
+        this.navigator.navigate(BandDashboard, {
+            parameters: {
+                key: this.context.loggedInBandKey
+            }
+        }); 
     }
     
     initMap() {
