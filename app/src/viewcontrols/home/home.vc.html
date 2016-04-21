@@ -6,9 +6,15 @@
 
 <h4>bands -  login</h4>
 
-<plat-input type="text" placeholder="username" plat-bind="loginUsername"></plat-input>
-<plat-button class="button-primary" plat-tap="bandLogin()">login</plat-button>
-
+<div class="bandLogin" plat-visible="{{ !loggedIn }}">
+    <plat-input type="text" placeholder="username" plat-bind="loginUsername"></plat-input>
+    <plat-button class="button-primary" plat-tap="bandLogin()">login</plat-button>
+</div>
+<div class="bandContinue" plat-visible="{{ loggedIn }}">
+    logged in already
+    <plat-button class="button-primary" plat-tap="">continue to dashboard</plat-button>
+    <plat-button class="button-secondary" plat-tap="bandLogout()">logout</plat-button>
+</div>
 
 <h4>fans - find an event</h4>
 <br>

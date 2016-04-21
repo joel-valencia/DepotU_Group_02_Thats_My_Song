@@ -2,6 +2,7 @@ import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
 import BandDashboard from '../banddashboard/banddashboard.vc';
+import SessionService from '../../services/session/session.svc';
 
 declare var google:any;
 
@@ -13,12 +14,23 @@ export default class HomeViewControl extends BaseViewControl {
         registerBandName: "",
         loginUsername: "",
         lat: 0,
-        lng: 0
+        lng: 0,
+        loggedIn: false
     };
     
-    constructor(private firebaseSvc:FirebaseService) {
+    constructor(private firebaseSvc:FirebaseService, private sessionSvc:SessionService) {
         super();
         
+    }
+    
+    navigatedTo() {
+        var loggedInBandKey = this.sessionSvc.checkLoggedInBand();
+        console.log("logged in:", loggedInBandKey);
+        
+        if (loggedInBandKey !== "null") {
+            console.log("set loggedIn to true");
+            this.context.loggedIn = true;
+        }
     }
     
     loaded() {
@@ -43,8 +55,10 @@ export default class HomeViewControl extends BaseViewControl {
     }
     
     bandLogin() {
-        this.firebaseSvc.bandLogin(this.context.loginUsername).then((result) => {
+        this.firebaseSvc.bandLogin(this.context.loginUsername).then((result:string) => {
             console.log("user found with key", result);
+            
+            this.sessionSvc.logInBand(result);
             
             this.navigator.navigate(BandDashboard, {
                 parameters: {
@@ -54,6 +68,12 @@ export default class HomeViewControl extends BaseViewControl {
         }, (err) => {
             console.log(err);
         });
+    }
+    
+    bandLogout() {
+        this.sessionSvc.logOutBand();
+        this.context.loggedIn = false;
+        console.log("logged out");
     }
     
     initMap() {
@@ -77,4 +97,4 @@ export default class HomeViewControl extends BaseViewControl {
     }
 }
 
-register.viewControl('home-vc', HomeViewControl, [FirebaseService]);
+register.viewControl('home-vc', HomeViewControl, [FirebaseService, SessionService]);
