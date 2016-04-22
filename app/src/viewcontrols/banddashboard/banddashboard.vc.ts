@@ -14,7 +14,8 @@ export default class BandDashboardViewControl extends BaseViewControl {
         songList: [],
         addSongTitle: "",
         addSongArtist: "",
-        bandImgUrl: ''
+        bandImgUrl: '',
+        bandAllEvents: []
     };
     
     constructor(private firebaseSvc:FirebaseService, private sessionSvc:SessionService) {
@@ -30,6 +31,9 @@ export default class BandDashboardViewControl extends BaseViewControl {
         
         // get song list
         this.bandGetSongList(this.context.bandKey);
+        
+        // get events created by band
+        this.bandGetAllEvents(this.context.bandKey);
     }
     
     loaded() {
@@ -84,6 +88,13 @@ export default class BandDashboardViewControl extends BaseViewControl {
         
         this.firebaseSvc.bandRemoveSong(bandKey, songKey).then((result:any) => {
             this.bandGetSongList(this.context.bandKey);
+        });
+    }
+    
+    bandGetAllEvents(bandKey:string) {
+        this.firebaseSvc.bandGetAllEvents(bandKey).then((result:any) => {
+            console.log("bandAllEvents", result);
+            this.context.bandAllEvents = result;
         });
     }
 }
