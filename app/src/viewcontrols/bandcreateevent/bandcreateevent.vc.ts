@@ -28,7 +28,8 @@ export default class BandCreateEventViewControl extends BaseViewControl {
         eventName: this.context.addEventName,
         eventDate: this.context.addEventDate,
         eventLocation: this.context.addEventLocation,
-        eventDescription: this.context.addEventDescription
+        eventDescription: this.context.addEventDescription,
+        eventActive: false
         };
         
         this.firebaseSvc.bandAddEvent(newEvent).then((result:any) => {

@@ -16,7 +16,9 @@ export default class BandDashboardViewControl extends BaseViewControl {
         addSongTitle: "",
         addSongArtist: "",
         bandImgUrl: '',
-        bandAllEvents: []
+        bandAllEvents: [],
+        bandActiveEvents: [],
+        bandInactiveEvents: []
     };
     
     constructor(private firebaseSvc:FirebaseService, private sessionSvc:SessionService) {
@@ -60,6 +62,7 @@ export default class BandDashboardViewControl extends BaseViewControl {
     bandGetSongList(key:string) {
         this.firebaseSvc.bandGetSongList(key).then((result:any) => {
             this.context.songList = result.songList;
+            console.log("songs:", this.context.songList.length);
         });
     }
     
@@ -104,8 +107,24 @@ export default class BandDashboardViewControl extends BaseViewControl {
     
     bandGetAllEvents(bandKey:string) {
          this.firebaseSvc.bandGetAllEvents(bandKey).then((result:any) => {
-             console.log("bandAllEvents", result);
+             console.log("band events array", result);
+             console.log("events: ", result.length);
+             
              this.context.bandAllEvents = result;
+             
+             var bandActiveEvents:any = [];
+             var bandInactiveEvents:any = [];
+             
+             for (var index = 0; index < this.context.bandAllEvents.length; index++) {                 
+                 if (this.context.bandAllEvents[index].eventActive == true) {
+                     bandActiveEvents.push(this.context.bandAllEvents[index]);
+                 } else {
+                     bandInactiveEvents.push(this.context.bandAllEvents[index]);
+                 }
+             }
+             
+             this.context.bandActiveEvents = bandActiveEvents;
+             this.context.bandInactiveEvents = bandInactiveEvents;
          });
      }
 }

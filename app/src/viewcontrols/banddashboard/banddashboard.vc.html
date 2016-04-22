@@ -10,9 +10,20 @@
 
 <plat-button class="button-secondary" plat-tap="goToCreateEvent()">Create Event</plat-button>
 
-<h4>all my events</h4>
+<h4>active events</h4>
 
-<plat-foreach plat-context="bandAllEvents">
+<plat-foreach plat-context="bandActiveEvents">
+    <div class="row">
+        <div class="col-phn-5">{{ eventName }}</div>
+        <div class="col-phn-5">{{ eventDate }}</div>
+        <div class="col-phn-2">
+        </div>
+    </div>
+</plat-foreach>
+
+<h4>inactive events</h4>
+
+<plat-foreach plat-context="bandInactiveEvents">
     <div class="row">
         <div class="col-phn-5">{{ eventName }}</div>
         <div class="col-phn-5">{{ eventDate }}</div>
