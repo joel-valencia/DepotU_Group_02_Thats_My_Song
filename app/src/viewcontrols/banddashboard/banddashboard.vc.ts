@@ -62,7 +62,7 @@ export default class BandDashboardViewControl extends BaseViewControl {
     bandGetSongList(key:string) {
         this.firebaseSvc.bandGetSongList(key).then((result:any) => {
             this.context.songList = result.songList;
-            console.log("songs:", this.context.songList.length);
+            // console.log("songs:", this.context.songList.length);
         });
     }
     
@@ -108,7 +108,7 @@ export default class BandDashboardViewControl extends BaseViewControl {
     bandGetAllEvents(bandKey:string) {
          this.firebaseSvc.bandGetAllEvents(bandKey).then((result:any) => {
              console.log("band events array", result);
-             console.log("events: ", result.length);
+            //  console.log("events: ", result.length);
              
              this.context.bandAllEvents = result;
              

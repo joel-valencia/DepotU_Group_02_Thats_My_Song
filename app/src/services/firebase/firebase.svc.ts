@@ -209,7 +209,6 @@ export default class FirebaseService extends BaseService {
     bandGetAllEvents(bandKey:string) {
         return new this.Promise((fulfill, reject) => {
             try {
-                console.log("get all events");
                 // get list of event keys for band
                 var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
                 var bandEventKeysFirebase = requestsFirebase.child("bands/" + bandKey + "/bandEventKeys");
@@ -217,15 +216,13 @@ export default class FirebaseService extends BaseService {
                 bandEventKeysFirebase.once("value", (snapshot: any) => {
                     var bandEventKeysObject = snapshot.val();
                     
-                    console.log("snapshot", snapshot.val());
-                    
+                    // if no event keys for band, fulfill with empty array and don't do anything else
                     if (snapshot.val() == null) {
-                        console.log("snapshot is null");
+                        console.log("band events is null");
                         fulfill([]);
                     } else {
-                    
-                        console.log("this shouldn't be getting to here");
                         
+                        // event keys for band is not null, continue processing
                         var eventObjectKeysArray = Object.keys(bandEventKeysObject);
                         var eventKeys:any = [];
                         
@@ -237,14 +234,14 @@ export default class FirebaseService extends BaseService {
                         
                         var bandAllEvents:any = [];
                         
+                        // get info for all band events
                         for (var i in eventKeys) {
-                            // console.log("loop", eventKeys[i]);
-                            
                             var currentKey = eventKeys[i];
                             
                             this.getEventInfo(currentKey).then((result:any) => {
                                 bandAllEvents.push(result);
                                 
+                                // if we have finished retrieving event info for the last band event, fulfill promise
                                 if (result.eventKey == lastEventKey) {
                                     fulfill(bandAllEvents);
                                 }
@@ -268,11 +265,8 @@ export default class FirebaseService extends BaseService {
             try {
                 var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
                 var eventFirebase = requestsFirebase.child("events/" + eventKey);
-                
-                // console.log("retrieveing event info for", eventKey);
 
                 eventFirebase.once("value", (snapshot: any) => {  
-                    // console.log("snapshot", snapshot.val());
                     var temp = snapshot.val();
                     temp.eventKey = eventKey;              
                     fulfill(temp);
@@ -291,7 +285,6 @@ export default class FirebaseService extends BaseService {
     eventActivate(eventKey:string) {
         return new this.Promise((fulfill, reject) => {
             try {
-                console.log(eventKey);
                 var requestsFirebase = new Firebase('https://song-requests.firebaseio.com');
                 var eventFirebase = requestsFirebase.child('events/' + eventKey);
                 
@@ -310,7 +303,6 @@ export default class FirebaseService extends BaseService {
     eventDeactivate(eventKey:string) {
         return new this.Promise((fulfill, reject) => {
             try {
-                console.log(eventKey);
                 var requestsFirebase = new Firebase('https://song-requests.firebaseio.com');
                 var eventFirebase = requestsFirebase.child('events/' + eventKey);
                 
