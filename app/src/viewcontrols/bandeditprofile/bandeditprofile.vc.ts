@@ -2,7 +2,7 @@ import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
 import BandDashboardViewControl from '../banddashboard/banddashboard.vc'
-
+import SessionService from '../../services/session/session.svc';
 
 
 export default class BandEditProfileViewControl extends BaseViewControl {
@@ -16,12 +16,12 @@ export default class BandEditProfileViewControl extends BaseViewControl {
         imgSrc: ''
     };
     
-    constructor(private firebaseSvc:FirebaseService) {
+    constructor(private firebaseSvc:FirebaseService, private sessionSvc:SessionService) {
         super();
     }
     navigatedTo(parameters:any) {
         // put the key of our band in the context
-        this.context.bandKey = parameters.key;
+        this.context.bandKey = this.sessionSvc.checkLoggedInBand();
         
         // get band info with this key
         this.bandGetInfo(this.context.bandKey);
@@ -108,4 +108,4 @@ export default class BandEditProfileViewControl extends BaseViewControl {
     }
 }
 
-register.viewControl('bandeditprofile-vc', BandEditProfileViewControl, [FirebaseService]);
+register.viewControl('bandeditprofile-vc', BandEditProfileViewControl, [FirebaseService, SessionService]);

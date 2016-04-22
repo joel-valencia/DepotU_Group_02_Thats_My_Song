@@ -16,8 +16,8 @@ export default class MyApp extends App {
         router.configure([
             { pattern: '', view: HomeViewControl },
             { pattern: 'createevent', view: BandCreateEventViewControl },
-            { pattern: 'dashboard/:key', view: BandDashboard },
-            { pattern: 'editprofile/:key', view: BandEditProfileViewControl },
+            { pattern: 'dashboard', view: BandDashboard },
+            { pattern: 'editprofile', view: BandEditProfileViewControl },
             { pattern: 'requestedsongs', view: BandRequestedSongsViewControl },
             { pattern: 'findevent', view: UserFindEventViewControl },
             { pattern: 'requestsong', view: UserRequestSongViewControl },
