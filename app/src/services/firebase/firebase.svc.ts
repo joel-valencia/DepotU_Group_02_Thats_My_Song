@@ -209,7 +209,7 @@ export default class FirebaseService extends BaseService {
     bandGetAllEvents(bandKey:string) {
         return new this.Promise((fulfill, reject) => {
             try {
-                
+                console.log("get all events");
                 // get list of event keys for band
                 var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
                 var bandEventKeysFirebase = requestsFirebase.child("bands/" + bandKey + "/bandEventKeys");
@@ -217,36 +217,41 @@ export default class FirebaseService extends BaseService {
                 bandEventKeysFirebase.once("value", (snapshot: any) => {
                     var bandEventKeysObject = snapshot.val();
                     
-                    if (snapshot.val() == "null") {
+                    console.log("snapshot", snapshot.val());
+                    
+                    if (snapshot.val() == null) {
+                        console.log("snapshot is null");
                         fulfill([]);
-                    }
+                    } else {
                     
-                    var eventObjectKeysArray = Object.keys(bandEventKeysObject);
-                    var eventKeys:any = [];
-                    
-                    for (var index = 0; index < eventObjectKeysArray.length; index++) {
-                        eventKeys.push(bandEventKeysObject[eventObjectKeysArray[index]]);
-                    }
-                    
-                    var lastEventKey = eventKeys[eventKeys.length - 1];
-                    
-                    var bandAllEvents:any = [];
-                    
-                    for (var i in eventKeys) {
-                        // console.log("loop", eventKeys[i]);
+                        console.log("this shouldn't be getting to here");
                         
-                        var currentKey = eventKeys[i];
+                        var eventObjectKeysArray = Object.keys(bandEventKeysObject);
+                        var eventKeys:any = [];
                         
-                        this.getEventInfo(currentKey).then((result:any) => {
-                            bandAllEvents.push(result);
+                        for (var index = 0; index < eventObjectKeysArray.length; index++) {
+                            eventKeys.push(bandEventKeysObject[eventObjectKeysArray[index]]);
+                        }
+                        
+                        var lastEventKey = eventKeys[eventKeys.length - 1];
+                        
+                        var bandAllEvents:any = [];
+                        
+                        for (var i in eventKeys) {
+                            // console.log("loop", eventKeys[i]);
                             
-                            if (result.eventKey == lastEventKey) {
-                                fulfill(bandAllEvents);
-                            }
-                        });
+                            var currentKey = eventKeys[i];
+                            
+                            this.getEventInfo(currentKey).then((result:any) => {
+                                bandAllEvents.push(result);
+                                
+                                if (result.eventKey == lastEventKey) {
+                                    fulfill(bandAllEvents);
+                                }
+                            });
+                        }
+                    
                     }
-                    
-                    
 
                 }, (errorObject: any) => {
                     console.log("The read failed: " + errorObject.code);
