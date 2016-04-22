@@ -216,6 +216,11 @@ export default class FirebaseService extends BaseService {
 
                 bandEventKeysFirebase.once("value", (snapshot: any) => {
                     var bandEventKeysObject = snapshot.val();
+                    
+                    if (snapshot.val() == "null") {
+                        fulfill([]);
+                    }
+                    
                     var eventObjectKeysArray = Object.keys(bandEventKeysObject);
                     var eventKeys:any = [];
                     
