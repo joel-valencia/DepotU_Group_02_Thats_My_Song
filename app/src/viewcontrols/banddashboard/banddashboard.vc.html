@@ -17,6 +17,7 @@
         <div class="col-phn-5">{{ eventName }}</div>
         <div class="col-phn-5">{{ eventDate }}</div>
         <div class="col-phn-2">
+            <plat-button class="button-danger button-small" plat-tap="eventDeactivate(eventKey)">deactivate</plat-button>
         </div>
     </div>
 </plat-foreach>
@@ -28,6 +29,7 @@
         <div class="col-phn-5">{{ eventName }}</div>
         <div class="col-phn-5">{{ eventDate }}</div>
         <div class="col-phn-2">
+            <plat-button class="button-success button-small" plat-tap="eventActivate(eventKey)">activate</plat-button>
         </div>
     </div>
 </plat-foreach>

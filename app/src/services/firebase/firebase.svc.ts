@@ -228,7 +228,7 @@ export default class FirebaseService extends BaseService {
                     var bandAllEvents:any = [];
                     
                     for (var i in eventKeys) {
-                        console.log("loop", eventKeys[i]);
+                        // console.log("loop", eventKeys[i]);
                         
                         var currentKey = eventKeys[i];
                         
@@ -276,6 +276,44 @@ export default class FirebaseService extends BaseService {
                 reject(err);
             }
         });
+    }
+    
+    eventActivate(eventKey:string) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                console.log(eventKey);
+                var requestsFirebase = new Firebase('https://song-requests.firebaseio.com');
+                var eventFirebase = requestsFirebase.child('events/' + eventKey);
+                
+                eventFirebase.update({
+                    eventActive: true
+                });
+                
+                fulfill("activated event");
+                
+            } catch (err) {
+                reject(err);
+            }
+        })
+    }
+    
+    eventDeactivate(eventKey:string) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                console.log(eventKey);
+                var requestsFirebase = new Firebase('https://song-requests.firebaseio.com');
+                var eventFirebase = requestsFirebase.child('events/' + eventKey);
+                
+                eventFirebase.update({
+                    eventActive: false
+                });
+                
+                fulfill("activated event");
+                
+            } catch (err) {
+                reject(err);
+            }
+        })
     }
 }
 

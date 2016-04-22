@@ -127,6 +127,20 @@ export default class BandDashboardViewControl extends BaseViewControl {
              this.context.bandInactiveEvents = bandInactiveEvents;
          });
      }
+     
+     eventActivate(eventKey:string) {
+         this.firebaseSvc.eventActivate(eventKey).then((result) => {
+             console.log("activated event", eventKey);
+             this.bandGetAllEvents(this.context.bandKey);
+         });
+     }
+     
+     eventDeactivate(eventKey:string) {
+         this.firebaseSvc.eventDeactivate(eventKey).then((result) => {
+             console.log("deactivated event", eventKey);
+             this.bandGetAllEvents(this.context.bandKey);
+         });
+     }
 }
 
 register.viewControl('banddashboard-vc', BandDashboardViewControl, [FirebaseService, SessionService]);
