@@ -2,12 +2,17 @@
 <div class="eventFieldsContainer">
     <div class="eventFields">
        <ul>
-            <li>Location<input plat-bind="addEventLocation" place-holder="Event Location" type="text"></li>
             <li>Name<input plat-bind="addEventName" place-holder="Event Name" type="text"></li>
             <li>Description<input plat-bind="addEventDescription" place-holder="Event Description" type="text"></li>
             <li>Date<input plat-bind="addEventDate" place-holder="date" type="text"></li>
+            <li><h4>Location</h4></li>
+            <li>Enter an Address<input plat-bind="addEventLocation" place-holder="Event Location" type="text"></li>
+            <li><h5>Or</h5></li>
+            <br>
+            <li><plat-button class='button-primary'>Use Current Location</plat-button></li>
       </ul>
     </div>
-    <plat-button plat-tap="bandAddEvent()">Add Event</plat-button>
+    <br><br>
+    <plat-button class='button-success' plat-tap="bandAddEvent()">Add Event</plat-button>
 
 </div>
