@@ -61,6 +61,7 @@ export default class BandCreateEventViewControl extends BaseViewControl {
        console.log(this.context.eventCoords);
        this.context.addEventLocation = this.context.eventCoords;
     }
+    
     geocodeAddress(){
         var geocoder = new google.maps.Geocoder();
         var address = this.context.eventAddress;
