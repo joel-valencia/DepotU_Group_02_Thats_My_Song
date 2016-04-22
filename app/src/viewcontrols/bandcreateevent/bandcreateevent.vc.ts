@@ -57,15 +57,13 @@ export default class BandCreateEventViewControl extends BaseViewControl {
     }
     
     setEventCoords(position: any) {
-       this.context.eventCoords = {lat: position.coords.latitude, lng: position.coords.longitude};
-       console.log(this.context.eventCoords);
-       this.context.addEventLocation = this.context.eventCoords;
+       this.context.addEventLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
+       console.log(this.context.addEventLocation);
     }
     
     geocodeAddress(){
         var geocoder = new google.maps.Geocoder();
         var address = this.context.eventAddress;
-        console.log(address);
         var context = this.context;
         
         geocoder.geocode( {address: address}, function(results: any, status: any) {
@@ -74,6 +72,7 @@ export default class BandCreateEventViewControl extends BaseViewControl {
             var latitude = results[0].geometry.location.lat();
             var longitude = results[0].geometry.location.lng();
             context.addEventLocation = {lat: latitude, lng: longitude};
+            console.log(context.addEventLocation);
             } 
         });
     }
