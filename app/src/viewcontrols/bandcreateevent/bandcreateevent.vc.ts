@@ -4,6 +4,8 @@ import BaseViewControl from '../base/base.vc';
 import SessionService from '../../services/session/session.svc';
 import BandDashboard from '../banddashboard/banddashboard.vc';
 
+declare var google: any;
+
 export default class BandCreateEventViewControl extends BaseViewControl {
     templateString: string = require('./bandcreateevent.vc.html');
 
@@ -11,9 +13,10 @@ export default class BandCreateEventViewControl extends BaseViewControl {
         addEventName:"",
         addEventDate:"",
         addEventDescription:"",
-        addEventLocation:"",
+        eventAddress:"",
         bandKey: "",
-        eventCoords: ''
+        eventCoords: '',
+        addEventLocation: ''
     };
     constructor(private firebaseSvc:FirebaseService, private sessionSvc:SessionService) {
         super();
@@ -56,8 +59,23 @@ export default class BandCreateEventViewControl extends BaseViewControl {
     setEventCoords(position: any) {
        this.context.eventCoords = {lat: position.coords.latitude, lng: position.coords.longitude};
        console.log(this.context.eventCoords);
+       this.context.addEventLocation = this.context.eventCoords;
     }
-    
+    geocodeAddress(){
+        var geocoder = new google.maps.Geocoder();
+        var address = this.context.eventAddress;
+        console.log(address);
+        var context = this.context;
+        
+        geocoder.geocode( {address: address}, function(results: any, status: any) {
+
+        if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            context.addEventLocation = {lat: latitude, lng: longitude};
+            } 
+        });
+    }
 }
 
 
