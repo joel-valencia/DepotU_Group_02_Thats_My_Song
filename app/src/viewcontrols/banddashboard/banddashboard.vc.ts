@@ -2,7 +2,11 @@ import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
 import BandEditProfileViewControl from '../bandeditprofile/bandeditprofile.vc'
+<<<<<<< HEAD
+import BandCreateEventViewControl from '../bandcreateevent/bandcreateevent.vc'
+=======
 import SessionService from '../../services/session/session.svc';
+>>>>>>> 8757e5985b42be398bd8d0cc249e4cca0ccb2113
 
 export default class BandDashboardViewControl extends BaseViewControl {
     templateString: string = require('./banddashboard.vc.html');
@@ -48,6 +52,14 @@ export default class BandDashboardViewControl extends BaseViewControl {
         })
     }
     
+     goToCreateEvent() {
+        this.navigator.navigate(BandCreateEventViewControl, {
+            parameters: {
+                key: this.context.bandKey
+            }
+        })
+    }
+    
     bandGetSongList(key:string) {
         this.firebaseSvc.bandGetSongList(key).then((result:any) => {
             this.context.songList = result.songList;
@@ -81,6 +93,8 @@ export default class BandDashboardViewControl extends BaseViewControl {
             this.bandGetSongList(this.context.bandKey);
         });
     }
+    
+       
     
     bandRemoveSong(key:string) {
         var bandKey = this.context.bandKey;

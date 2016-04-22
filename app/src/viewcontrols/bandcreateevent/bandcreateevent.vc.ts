@@ -2,6 +2,7 @@ import {register} from 'platypus';
 import FirebaseService from '../../services/firebase/firebase.svc';
 import BaseViewControl from '../base/base.vc';
 import SessionService from '../../services/session/session.svc';
+import BandDashboard from '../banddashboard/banddashboard.vc';
 
 export default class BandCreateEventViewControl extends BaseViewControl {
     templateString: string = require('./bandcreateevent.vc.html');
@@ -23,8 +24,8 @@ export default class BandCreateEventViewControl extends BaseViewControl {
     
     bandAddEvent() {
         var newEvent={
-            bandKey: this.context.bandKey,
-         eventName: this.context.addEventName,
+        bandKey: this.context.bandKey,
+        eventName: this.context.addEventName,
         eventDate: this.context.addEventDate,
         eventLocation: this.context.addEventLocation,
         eventDescription: this.context.addEventDescription
@@ -36,7 +37,18 @@ export default class BandCreateEventViewControl extends BaseViewControl {
             console.log("err");
             // this.eventList(this.context.eventKey);
         });
+        
+        {
+        this.navigator.navigate(BandDashboard, {
+            parameters: {
+                key: this.context.bandKey
+            }
+        })
+    }
+    
     }
 }
+
+
 
 register.viewControl('bandcreateevent-vc', BandCreateEventViewControl,[FirebaseService, SessionService]);
