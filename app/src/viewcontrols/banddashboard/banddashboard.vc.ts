@@ -2,7 +2,11 @@ import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
 import BandEditProfileViewControl from '../bandeditprofile/bandeditprofile.vc'
+<<<<<<< HEAD
 import BandCreateEventViewControl from '../bandcreateevent/bandcreateevent.vc'
+=======
+import SessionService from '../../services/session/session.svc';
+>>>>>>> 8757e5985b42be398bd8d0cc249e4cca0ccb2113
 
 export default class BandDashboardViewControl extends BaseViewControl {
     templateString: string = require('./banddashboard.vc.html');
@@ -17,13 +21,13 @@ export default class BandDashboardViewControl extends BaseViewControl {
         bandImgUrl: ''
     };
     
-    constructor(private firebaseSvc:FirebaseService) {
+    constructor(private firebaseSvc:FirebaseService, private sessionSvc:SessionService) {
         super();
     }
     
     navigatedTo(parameters:any) {
         // put the key of our band in the context
-        this.context.bandKey = parameters.key;
+        this.context.bandKey = this.sessionSvc.checkLoggedInBand();
         
         // get band info with this key
         this.bandGetInfo(this.context.bandKey);
@@ -98,4 +102,4 @@ export default class BandDashboardViewControl extends BaseViewControl {
     }
 }
 
-register.viewControl('banddashboard-vc', BandDashboardViewControl, [FirebaseService]);
+register.viewControl('banddashboard-vc', BandDashboardViewControl, [FirebaseService, SessionService]);
