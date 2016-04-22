@@ -180,6 +180,24 @@ export default class FirebaseService extends BaseService {
             }
         })
     }
+
+    bandAddEvent(newEvent:{}) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                console.log(newEvent);
+                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var eventsFirebase = requestsFirebase.child("events");
+                var newEventRef = eventsFirebase.push(newEvent);
+                var newEventKey = newEventRef.key();
+                
+                fulfill(newEventKey);
+            
+            } catch (err) {
+                reject(err);
+            }
+        });
+
+    }
 }
 
 register.injectable('firebase-svc', FirebaseService);
