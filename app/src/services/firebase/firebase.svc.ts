@@ -181,14 +181,21 @@ export default class FirebaseService extends BaseService {
         })
     }
 
-    bandAddEvent(newEvent:{}) {
+    bandAddEvent(newEvent:any) {
         return new this.Promise((fulfill, reject) => {
             try {
                 console.log(newEvent);
+                
+                // add to events section of database
                 var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
                 var eventsFirebase = requestsFirebase.child("events");
                 var newEventRef = eventsFirebase.push(newEvent);
                 var newEventKey = newEventRef.key();
+                
+                
+                // add key of event to bandEventKeys section of the band
+                var bandEventKeys = requestsFirebase.child("bands/" + newEvent.bandKey + "/bandEventKeys");
+                bandEventKeys.push(newEventKey);
                 
                 fulfill(newEventKey);
             
@@ -197,6 +204,75 @@ export default class FirebaseService extends BaseService {
             }
         });
 
+    }
+    
+    bandGetAllEvents(bandKey:string) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                
+                // get list of event keys for band
+                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var bandEventKeysFirebase = requestsFirebase.child("bands/" + bandKey + "/bandEventKeys");
+
+                bandEventKeysFirebase.once("value", (snapshot: any) => {
+                    var bandEventKeysObject = snapshot.val();
+                    var eventObjectKeysArray = Object.keys(bandEventKeysObject);
+                    var eventKeys:any = [];
+                    
+                    for (var index = 0; index < eventObjectKeysArray.length; index++) {
+                        eventKeys.push(bandEventKeysObject[eventObjectKeysArray[index]]);
+                    }
+                    
+                    var lastEventKey = eventKeys[eventKeys.length - 1];
+                    
+                    var bandAllEvents:any = [];
+                    
+                    for (var i in eventKeys) {
+                        // console.log("loop", eventKeys[i]);
+                        this.getEventInfo(eventKeys[i]).then((result) => {
+                            // console.log("result", result);
+                            bandAllEvents.push(result);
+                            
+                            if (i = lastEventKey) {
+                                // console.log("bandAllEvents", bandAllEvents)
+                                fulfill(bandAllEvents);
+                            }
+                        });
+                    }
+                    
+                    
+
+                }, (errorObject: any) => {
+                    console.log("The read failed: " + errorObject.code);
+                });
+
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
+    
+    getEventInfo(eventKey:string) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var eventFirebase = requestsFirebase.child("events/" + eventKey);
+                
+                // console.log("retrieveing event info for", eventKey);
+
+                eventFirebase.once("value", (snapshot: any) => {  
+                    // console.log("snapshot", snapshot.val());               
+                    fulfill(snapshot.val());
+
+                }, (errorObject: any) => {
+                    console.log("The read failed: " + errorObject.code);
+                });
+
+
+            } catch (err) {
+                reject(err);
+            }
+        });
     }
 }
 

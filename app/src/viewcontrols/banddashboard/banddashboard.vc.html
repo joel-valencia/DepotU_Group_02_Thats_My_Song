@@ -4,10 +4,23 @@
 
 <div>{{ bandDescription }}</div>
 
-<img src="{{ bandImgUrl }}" alt='Image'>
-<plat-button class="button-secondary" plat-tap="goToCreateEvent()">Create Event</plat-button>
+<img src="{{ bandImgUrl }}" alt='Image' />
 
 <plat-button plat-tap='goToEdit()'>Edit Info</plat-button>
+
+<plat-button class="button-secondary" plat-tap="goToCreateEvent()">Create Event</plat-button>
+
+<h4>all my events</h4>
+
+<plat-foreach plat-context="bandAllEvents">
+    <div class="row">
+        <div class="col-phn-5">{{ eventName }}</div>
+        <div class="col-phn-5">{{ eventDate }}</div>
+        <div class="col-phn-2">
+        </div>
+    </div>
+</plat-foreach>
+
 
 <h4>song list</h4>
 
