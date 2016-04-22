@@ -12,7 +12,8 @@ export default class BandCreateEventViewControl extends BaseViewControl {
         addEventDate:"",
         addEventDescription:"",
         addEventLocation:"",
-        bandKey: ""
+        bandKey: "",
+        eventCoords: ''
     };
     constructor(private firebaseSvc:FirebaseService, private sessionSvc:SessionService) {
         super();
@@ -39,7 +40,6 @@ export default class BandCreateEventViewControl extends BaseViewControl {
             // this.eventList(this.context.eventKey);
         });
         
-        {
         this.navigator.navigate(BandDashboard, {
             parameters: {
                 key: this.context.bandKey
@@ -47,7 +47,17 @@ export default class BandCreateEventViewControl extends BaseViewControl {
         })
     }
     
+    getEventCoords() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.setEventCoords.bind(this));
+        }
     }
+    
+    setEventCoords(position: any) {
+       this.context.eventCoords = {lat: position.coords.latitude, lng: position.coords.longitude};
+       console.log(this.context.eventCoords);
+    }
+    
 }
 
 
