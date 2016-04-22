@@ -228,13 +228,14 @@ export default class FirebaseService extends BaseService {
                     var bandAllEvents:any = [];
                     
                     for (var i in eventKeys) {
-                        // console.log("loop", eventKeys[i]);
-                        this.getEventInfo(eventKeys[i]).then((result) => {
-                            // console.log("result", result);
+                        console.log("loop", eventKeys[i]);
+                        
+                        var currentKey = eventKeys[i];
+                        
+                        this.getEventInfo(currentKey).then((result:any) => {
                             bandAllEvents.push(result);
                             
-                            if (i = lastEventKey) {
-                                // console.log("bandAllEvents", bandAllEvents)
+                            if (result.eventKey == lastEventKey) {
                                 fulfill(bandAllEvents);
                             }
                         });
@@ -261,8 +262,10 @@ export default class FirebaseService extends BaseService {
                 // console.log("retrieveing event info for", eventKey);
 
                 eventFirebase.once("value", (snapshot: any) => {  
-                    // console.log("snapshot", snapshot.val());               
-                    fulfill(snapshot.val());
+                    // console.log("snapshot", snapshot.val());
+                    var temp = snapshot.val();
+                    temp.eventKey = eventKey;              
+                    fulfill(temp);
 
                 }, (errorObject: any) => {
                     console.log("The read failed: " + errorObject.code);
