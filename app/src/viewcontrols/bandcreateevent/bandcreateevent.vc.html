@@ -6,12 +6,15 @@
             <li>Description<input plat-bind="addEventDescription" place-holder="Event Description" type="text"></li>
             <li>Date<input plat-bind="addEventDate" place-holder="date" type="text"></li>
             <li><h4>Location</h4></li>
-            <li>Enter an Address<input plat-bind="eventAddress" place-holder="Event Location" type="text"></li>
-            <li><plat-button plat-tap='geocodeAddress()'>Enter</plat-button></li>
             <br>
-            <li><h5>Or</h5></li>
+            <li class='hide'>Enter an Address<input plat-bind="eventAddress" place-holder="Event Location" type="text" class='hide'></li>
+            <li style='display: none; color: green' id='confirm'>Location Added!</li>
+            <li> {{ eventAddress }}</li>
+            <li><plat-button plat-tap='geocodeAddress()' class='hide'>Enter</plat-button></li>
             <br>
-            <li><plat-button class='button-primary' plat-tap='getEventCoords'>Use Current Location</plat-button></li>
+            <li><h5 class='hide'>Or</h5></li>
+            <br>
+            <li><plat-button class='button-primary hide' plat-tap='getEventCoords'>Use Current Location</plat-button></li>
       </ul>
     </div>
     <br><br>

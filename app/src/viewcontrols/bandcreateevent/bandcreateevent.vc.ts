@@ -75,6 +75,13 @@ export default class BandCreateEventViewControl extends BaseViewControl {
             console.log(context.addEventLocation);
             } 
         });
+       var hideElements = document.getElementsByClassName('hide');
+       for (let i = 0; i < hideElements.length; i++) {
+           let element = <HTMLElement> hideElements[i];
+           element.style.display = 'none';
+       }
+       document.getElementById('confirm').style.display = 'inline-block';
+     ;
     }
 }
 
