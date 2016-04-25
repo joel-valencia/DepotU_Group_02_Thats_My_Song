@@ -329,7 +329,11 @@ export default class FirebaseService extends BaseService {
                     var eventsArray:any = [];
                     
                     for (var key in eventsObject) {
-                        eventsArray.push(eventsObject[key]);
+                        // add event key to array data
+                        var temp = eventsObject[key];
+                        temp.eventKey = key;
+                        
+                        eventsArray.push(temp);
                     }
                     
                     fulfill(eventsArray);

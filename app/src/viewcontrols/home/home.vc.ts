@@ -1,8 +1,9 @@
 import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
-import BandDashboard from '../banddashboard/banddashboard.vc';
+import BandDashboardViewControl from '../banddashboard/banddashboard.vc';
 import SessionService from '../../services/session/session.svc';
+import EventViewControl from '../event/event.vc';
 
 declare var google:any;
 
@@ -69,7 +70,7 @@ export default class HomeViewControl extends BaseViewControl {
             
             this.sessionSvc.logInBand(result);
             
-            this.navigator.navigate(BandDashboard, {
+            this.navigator.navigate(BandDashboardViewControl, {
                 parameters: {
                     key: result
                 }
@@ -86,7 +87,7 @@ export default class HomeViewControl extends BaseViewControl {
     }
     
     goToDashboard() {
-        this.navigator.navigate(BandDashboard, {
+        this.navigator.navigate(BandDashboardViewControl, {
             parameters: {
                 key: this.context.loggedInBandKey
             }
@@ -111,6 +112,14 @@ export default class HomeViewControl extends BaseViewControl {
         console.log(this.context.lat);
         this.initMap();
         
+    }
+    
+    goToEvent(key:string) {
+        this.navigator.navigate(EventViewControl, {
+            parameters: {
+                key: key
+            }
+        }); 
     }
 }
 
