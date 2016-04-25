@@ -14,8 +14,11 @@
 
 <plat-foreach plat-context="bandActiveEvents">
     <div class="row">
-        <div class="col-phn-5">{{ eventName }}</div>
-        <div class="col-phn-5">{{ eventDate }}</div>
+        <div class="col-phn-4">{{ eventName }}</div>
+        <div class="col-phn-4">{{ eventDate }}</div>
+        <div class="col-phn-2">
+            <plat-button class="button-primary button-small" plat-tap="goToEvent(eventKey)">open</plat-button>
+        </div>
         <div class="col-phn-2">
             <plat-button class="button-danger button-small" plat-tap="eventDeactivate(eventKey)">deactivate</plat-button>
         </div>
@@ -26,8 +29,11 @@
 
 <plat-foreach plat-context="bandInactiveEvents">
     <div class="row">
-        <div class="col-phn-5">{{ eventName }}</div>
-        <div class="col-phn-5">{{ eventDate }}</div>
+        <div class="col-phn-4">{{ eventName }}</div>
+        <div class="col-phn-4">{{ eventDate }}</div>
+        <div class="col-phn-2">
+            <plat-button class="button-primary button-small" plat-tap="goToEvent(eventKey)">open</plat-button>
+        </div>
         <div class="col-phn-2">
             <plat-button class="button-success button-small" plat-tap="eventActivate(eventKey)">activate</plat-button>
         </div>
