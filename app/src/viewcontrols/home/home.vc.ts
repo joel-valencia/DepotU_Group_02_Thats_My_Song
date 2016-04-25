@@ -41,6 +41,7 @@ export default class HomeViewControl extends BaseViewControl {
             console.log("all active events", result);
             this.context.allActiveEvents = result;
         });
+        
     }
     
     loaded() {
