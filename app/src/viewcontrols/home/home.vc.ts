@@ -105,7 +105,7 @@ export default class HomeViewControl extends BaseViewControl {
                position: {lat: this.context.lat, lng: this.context.lng},
                map: map,
                title: 'This is me!',
-               icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' 
+               icon: 'http://www.google.com/mapfiles/arrow.png' 
             });
             
             var infowindow = new google.maps.InfoWindow({
