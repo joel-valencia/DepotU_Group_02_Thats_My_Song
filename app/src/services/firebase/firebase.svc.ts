@@ -317,6 +317,33 @@ export default class FirebaseService extends BaseService {
             }
         })
     }
+    
+    getAllActiveEvents() {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var eventFirebase = requestsFirebase.child("events");
+
+                eventFirebase.orderByChild("eventActive").equalTo(true).once("value", (snapshot: any) => {
+                    var eventsObject = snapshot.val();
+                    var eventsArray:any = [];
+                    
+                    for (var key in eventsObject) {
+                        eventsArray.push(eventsObject[key]);
+                    }
+                    
+                    fulfill(eventsArray);
+
+                }, (errorObject: any) => {
+                    console.log("The read failed: " + errorObject.code);
+                });
+
+
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
 }
 
 register.injectable('firebase-svc', FirebaseService);

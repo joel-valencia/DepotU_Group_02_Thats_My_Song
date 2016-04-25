@@ -17,6 +17,14 @@
 </div>
 
 <h4>fans - find an event</h4>
+
+<plat-foreach plat-context="allActiveEvents">
+    <div class="row">
+        <div class="col-phn-4">{{ eventName }}</div>
+        <div class="col-phn-4">{{ eventDate }}</div>
+    </div>
+</plat-foreach>
+
 <br>
 <br>
 <br>

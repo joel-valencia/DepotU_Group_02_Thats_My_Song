@@ -16,7 +16,8 @@ export default class HomeViewControl extends BaseViewControl {
         lat: 0,
         lng: 0,
         loggedIn: false,
-        loggedInBandKey: ""
+        loggedInBandKey: "",
+        allActiveEvents: []
     };
     
     constructor(private firebaseSvc:FirebaseService, private sessionSvc:SessionService) {
@@ -25,12 +26,20 @@ export default class HomeViewControl extends BaseViewControl {
     }
     
     navigatedTo() {
+        // get band key from local storage
         this.context.loggedInBandKey = this.sessionSvc.checkLoggedInBand();
         console.log("logged in user key:", this.context.loggedInBandKey);
         
+        // if logged in set logged in variable to true
         if (this.context.loggedInBandKey !== "null") {
             this.context.loggedIn = true;
         }
+        
+        // get all active events
+        this.firebaseSvc.getAllActiveEvents().then((result) => {
+            console.log("all active events", result);
+            this.context.allActiveEvents = result;
+        });
     }
     
     loaded() {
