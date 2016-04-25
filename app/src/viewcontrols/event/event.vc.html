@@ -1,1 +1,13 @@
-<h1>Hello World!</h1>
+<h3>{{ eventData.eventName }}</h3>
+
+<h4>{{ bandData.bandName }}</h4>
+
+<plat-foreach plat-context="songList">
+    <div class="row">
+        <div class="col-phn-5">{{ title }}</div>
+        <div class="col-phn-5">{{ artist }}</div>
+        <div class="col-phn-2">
+            <plat-button class="button-success button-small" plat-tap="requestSong(title, artist, originalKey)">request</plat-button>
+        </div>
+    </div>
+</plat-foreach>

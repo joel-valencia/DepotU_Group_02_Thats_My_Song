@@ -348,6 +348,29 @@ export default class FirebaseService extends BaseService {
             }
         });
     }
+    
+    requestSong(songTitle:string, songArtist:string, songKey:string, eventKey:string) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+
+                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var songRequestsFirebase = requestsFirebase.child("events/" + eventKey + "/songRequests");
+                
+                var newRequest = {
+                    title: songTitle,
+                    artist: songArtist,
+                    songKey: songKey
+                }
+                songRequestsFirebase.push(newRequest);
+                
+                fulfill();
+
+
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
 }
 
 register.injectable('firebase-svc', FirebaseService);
