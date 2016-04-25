@@ -109,7 +109,8 @@ export default class HomeViewControl extends BaseViewControl {
                 var eventMarkers = new google.maps.Marker({
                     position: this.context.allActiveEvents[i].eventLocation,
                     map: map,
-                    title: this.context.allActiveEvents[i].eventDescription
+                    title: this.context.allActiveEvents[i].eventDescription,
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
                 });
             }
     }
