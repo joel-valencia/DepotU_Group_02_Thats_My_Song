@@ -4,6 +4,7 @@ import FirebaseService from '../../services/firebase/firebase.svc';
 import BandEditProfileViewControl from '../bandeditprofile/bandeditprofile.vc';
 import BandCreateEventViewControl from '../bandcreateevent/bandcreateevent.vc';
 import SessionService from '../../services/session/session.svc';
+import BandEventViewControl from '../bandevent/bandevent.vc';
 
 export default class BandDashboardViewControl extends BaseViewControl {
     templateString: string = require('./banddashboard.vc.html');
@@ -140,6 +141,14 @@ export default class BandDashboardViewControl extends BaseViewControl {
              console.log("deactivated event", eventKey);
              this.bandGetAllEvents(this.context.bandKey);
          });
+     }
+     
+     goToEvent(eventKey:string) {
+         this.navigator.navigate(BandEventViewControl, {
+            parameters: {
+                key: eventKey
+            }
+        })
      }
 }
 
