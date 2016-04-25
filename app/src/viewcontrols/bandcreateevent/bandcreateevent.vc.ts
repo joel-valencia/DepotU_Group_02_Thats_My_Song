@@ -33,6 +33,7 @@ export default class BandCreateEventViewControl extends BaseViewControl {
         eventDate: this.context.addEventDate,
         eventLocation: this.context.addEventLocation,
         eventDescription: this.context.addEventDescription,
+        eventAdress: this.context.eventAddress,
         eventActive: false
         };
         
