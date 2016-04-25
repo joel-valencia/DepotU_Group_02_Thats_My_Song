@@ -106,19 +106,41 @@ export default class HomeViewControl extends BaseViewControl {
                title: 'This is me!',
                icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' 
             });
+            
+            var infowindow = new google.maps.InfoWindow({
+                content: marker.title
+            })
+            
+            marker.addListener('click', function(){
+                infowindow.open(map, marker);
+            });
             var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             var labelIndex = 0;
+            var eventNames: any = [];
             for (var i=0; i < this.context.allActiveEvents.length; i++) {
                 
                 var eventMarkers = new google.maps.Marker({
                     position: this.context.allActiveEvents[i].eventLocation,
                     map: map,
-                    title: this.context.allActiveEvents[i].eventDescription,
+                    title: this.context.allActiveEvents[i].eventName,
                     animation: google.maps.Animation.DROP,
                     label: labels[labelIndex++ % labels.length]
                 });
+                eventNames.push(this.context.allActiveEvents[i].eventName);
+                this.createInfoWindow(eventMarkers, eventNames[i]);
             }
     }
+    createInfoWindow(eventMarkers: any, eventNames: any) {
+        var infowindow = new google.maps.InfoWindow({
+            content: eventNames
+        });
+
+        eventMarkers.addListener('click', function() {
+            infowindow.open(eventMarkers.get('map'), eventMarkers);
+        });
+
+    }
+    
     setPosition(position: any) {
         this.context.lat = position.coords.latitude;
         this.context.lng = position.coords.longitude;
