@@ -103,8 +103,21 @@ export default class HomeViewControl extends BaseViewControl {
             var marker = new google.maps.Marker({
                position: {lat: this.context.lat, lng: this.context.lng},
                map: map,
-               title: 'Hello World!' 
+               title: 'This is me!',
+               icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' 
             });
+            var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            var labelIndex = 0;
+            for (var i=0; i < this.context.allActiveEvents.length; i++) {
+                
+                var eventMarkers = new google.maps.Marker({
+                    position: this.context.allActiveEvents[i].eventLocation,
+                    map: map,
+                    title: this.context.allActiveEvents[i].eventDescription,
+                    animation: google.maps.Animation.DROP,
+                    label: labels[labelIndex++ % labels.length]
+                });
+            }
     }
     setPosition(position: any) {
         this.context.lat = position.coords.latitude;
