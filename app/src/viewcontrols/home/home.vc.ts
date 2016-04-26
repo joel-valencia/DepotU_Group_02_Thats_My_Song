@@ -40,15 +40,13 @@ export default class HomeViewControl extends BaseViewControl {
         this.firebaseSvc.getAllActiveEvents().then((result) => {
             console.log("all active events", result);
             this.context.allActiveEvents = result;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
+            }
         });
         
     }
     
-    loaded() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
-        }
-    }
     
     bandRegister() {
         var newUser = {
