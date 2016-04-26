@@ -7,7 +7,18 @@
         <div class="col-phn-5">{{ title }}</div>
         <div class="col-phn-5">{{ artist }}</div>
         <div class="col-phn-2">
-            <plat-button class="button-success button-small" plat-tap="requestSong(title, artist, originalKey)">request</plat-button>
+            <!--<plat-button class="button-success button-small" plat-tap="requestSong(title, artist, originalKey)">request</plat-button>-->
+            <plat-button plat-tap='modalOn(title, artist, originalKey)'>Modal Test</plat-button>
         </div>
     </div>
 </plat-foreach>
+
+ <plat-modal plat-options='{transition: "fade"}' plat-bind='modal' class='modal-prompt'>
+            <div class="prompt-title">Now Play My Song!</div>
+            <div class="prompt-body">
+                <textarea plat-bind='comment' cols="30" rows="10"></textarea>
+            </div>
+            <div class="prompt-action">
+                <plat-button plat-tap='modalOff()'>Request</plat-button>
+            </div>
+</plat-modal>
