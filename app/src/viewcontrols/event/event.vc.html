@@ -7,7 +7,8 @@
         <div class="col-phn-5">{{ title }}</div>
         <div class="col-phn-5">{{ artist }}</div>
         <div class="col-phn-2">
-            <plat-button class='button-success' plat-tap='modalOn(title, artist, originalKey)'>Request It!</plat-button>
+            <plat-button id='{{ title }}' class='button-success' plat-tap='modalOn(title, artist, originalKey)'>Request It!</plat-button>
+            <img id ='{{ originalKey }}' style='display: none; margin-bottom: -0.65em' src="http://icons.iconarchive.com/icons/icojam/blueberry-basic/32/check-icon.png" alt="hi">
         </div>
     </div>
 </plat-foreach>
