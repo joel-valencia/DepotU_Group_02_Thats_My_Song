@@ -10,3 +10,85 @@
 @import '../src/viewcontrols/home/home.vc.less';
 @import '../src/viewcontrols/userfindevent/userfindevent.vc.less';
 @import '../src/viewcontrols/userrequestsong/userrequestsong.vc.less';
+
+@font-face {
+    font-family: 'Museo Slab 700 Italic';
+    src: url('/fonts/Museo Slab 700 Italic.otf')
+}
+
+
+@navbar-height: 3em;
+
+
+body {
+    text-align: center;
+}
+
+#navbar {
+    position: fixed;
+    height: @navbar-height;
+    width: 100%;
+    background-color: #333;
+    z-index: 100;
+    // box-shadow: 0px 1px 3px #666;
+    line-height: @navbar-height;
+    vertical-align: middle;
+    // padding-left: 1em;
+    top: 0;
+    
+    #logo {
+        color: #fe6b44;
+        font-family: "Museo Slab 700 Italic";
+        font-size: 1.5em;
+    }
+}
+
+#vp-wrapper {
+    top: @navbar-height;
+    margin-top: @navbar-height + 1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+}
+
+h4 {
+    color: #fe6b44;
+    font-family: "Museo Slab 700 Italic";
+    padding: 0;
+}
+
+h4:first-child {
+    padding-top: 0;
+}
+
+.row:first-child, input:first-child {
+    margin-top: 1em;
+}
+
+.bandPic {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.3em;
+    border: 0.1em solid #555;
+}
+
+#map {
+    display: inline-block;
+    width: 90%;
+    height: 200px;
+    border-radius: 0.3em;
+    border: 0.1em solid #555;
+}
+
+button.plat-button, button.plat-button.button-small {
+    border-radius: 0.3em;
+    margin: 0.2em;
+}
+
+@media screen and (min-width: 600px) {
+    #map {
+        width: 550px;
+        height: 350px;
+    }
+}

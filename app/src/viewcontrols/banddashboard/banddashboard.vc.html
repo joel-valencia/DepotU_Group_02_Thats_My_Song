@@ -4,7 +4,7 @@
 
 <div>{{ bandDescription }}</div>
 
-<img src="{{ bandImgUrl }}" alt='Image' />
+<img src="{{ bandImgUrl }}" alt='Image' class="bandPic" />
 
 <plat-button plat-tap='goToEdit()'>Edit Info</plat-button>
 
@@ -50,8 +50,9 @@
 
 <plat-foreach plat-context="songList">
     <div class="row">
-        <div class="col-phn-5">{{ title }}</div>
-        <div class="col-phn-5">{{ artist }}</div>
+        <div class="col-phn-2">{{ @index + 1 }}</div>
+        <div class="col-phn-4">{{ title }}</div>
+        <div class="col-phn-4">{{ artist }}</div>
         <div class="col-phn-2">
             
             <plat-button class="button-danger button-small" plat-tap="bandRemoveSong(originalKey)">x</plat-button>
