@@ -41,6 +41,7 @@ export default class HomeViewControl extends BaseViewControl {
             console.log("all active events", result);
             this.context.allActiveEvents = result;
         });
+        
     }
     
     loaded() {
@@ -104,7 +105,7 @@ export default class HomeViewControl extends BaseViewControl {
                position: {lat: this.context.lat, lng: this.context.lng},
                map: map,
                title: 'This is me!',
-               icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png' 
+               icon: 'http://www.google.com/mapfiles/arrow.png' 
             });
             
             var infowindow = new google.maps.InfoWindow({
@@ -117,6 +118,7 @@ export default class HomeViewControl extends BaseViewControl {
             var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             var labelIndex = 0;
             var eventNames: any = [];
+            var eventKeys: any = [];
             for (var i=0; i < this.context.allActiveEvents.length; i++) {
                 
                 var eventMarkers = new google.maps.Marker({
@@ -127,12 +129,14 @@ export default class HomeViewControl extends BaseViewControl {
                     label: labels[labelIndex++ % labels.length]
                 });
                 eventNames.push(this.context.allActiveEvents[i].eventName);
-                this.createInfoWindow(eventMarkers, eventNames[i]);
+                eventKeys.push(this.context.allActiveEvents[i].eventKey)
+                this.createInfoWindow(eventMarkers, eventNames[i], eventKeys[i]);
             }
     }
-    createInfoWindow(eventMarkers: any, eventNames: any) {
+    createInfoWindow(eventMarkers: any, eventNames: any, eventKeys: any) {
+        var contentString = '<a id="windowLink" href="http://localhost:3000/event/'+eventKeys+'">'+eventNames+'</a>';
         var infowindow = new google.maps.InfoWindow({
-            content: eventNames
+            content: contentString
         });
 
         eventMarkers.addListener('click', function() {
