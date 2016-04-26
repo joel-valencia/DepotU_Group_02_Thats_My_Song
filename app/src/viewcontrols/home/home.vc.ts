@@ -101,11 +101,13 @@ export default class HomeViewControl extends BaseViewControl {
             center: {lat: this.context.lat, lng: this.context.lng},
             zoom: 13
             });
+        
             var marker = new google.maps.Marker({
                position: {lat: this.context.lat, lng: this.context.lng},
                map: map,
                title: 'This is me!',
-               icon: 'http://www.google.com/mapfiles/arrow.png' 
+               icon: 'http://earth.google.com/images/kml-icons/track-directional/track-8.png'
+     
             });
             
             var infowindow = new google.maps.InfoWindow({
