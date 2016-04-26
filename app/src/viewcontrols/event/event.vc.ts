@@ -67,6 +67,9 @@ export default class EventViewControl extends BaseViewControl {
         this.context.modal = false;
         this.requestSong();
     }
+    cancel() {
+        this.context.modal = false;
+    }
 }
 
 register.viewControl('event-vc', EventViewControl, [FirebaseService]);
