@@ -349,7 +349,7 @@ export default class FirebaseService extends BaseService {
         });
     }
     
-    requestSong(songTitle:string, songArtist:string, songKey:string, eventKey:string) {
+    requestSong(songTitle:string, songArtist:string, songKey:string, eventKey:string, comment: string) {
         return new this.Promise((fulfill, reject) => {
             try {
 
@@ -359,7 +359,8 @@ export default class FirebaseService extends BaseService {
                 var newRequest = {
                     title: songTitle,
                     artist: songArtist,
-                    songKey: songKey
+                    songKey: songKey,
+                    comment: comment
                 }
                 songRequestsFirebase.push(newRequest);
                 
