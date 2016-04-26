@@ -16,14 +16,9 @@
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-4">{{ eventName }}</div>
         <div class="col-phn-4">{{ eventDate }}</div>
-        
-  
-        <div class="col-phn-2">
-                        <plat-button class="button-secondary button-small" plat-tap="editEvent(eventKey)">Edit Event</plat-button>
-
+        <div class="col-phn-4">
             <plat-button class="button-primary button-small" plat-tap="goToEvent(eventKey)">open</plat-button>
-        </div>
-        <div class="col-phn-2">
+            <plat-button class="button-secondary button-small" plat-tap="editEvent(eventKey)">edit</plat-button>
             <plat-button class="button-danger button-small" plat-tap="eventDeactivate(eventKey)">deactivate</plat-button>
         </div>
     </div>
@@ -35,12 +30,9 @@
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-4">{{ eventName }}</div>
         <div class="col-phn-4">{{ eventDate }}</div>
-        <div class="col-phn-2">
-                        <plat-button class="button-secondary button-small" plat-tap="editEvent(eventKey)">Edit Event</plat-button>
-
+        <div class="col-phn-4">
             <plat-button class="button-primary button-small" plat-tap="goToEvent(eventKey)">open</plat-button>
-        </div>
-        <div class="col-phn-2">
+            <plat-button class="button-secondary button-small" plat-tap="editEvent(eventKey)">edit</plat-button>
             <plat-button class="button-success button-small" plat-tap="eventActivate(eventKey)">activate</plat-button>
         </div>
     </div>
