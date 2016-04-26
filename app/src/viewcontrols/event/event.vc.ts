@@ -66,6 +66,12 @@ export default class EventViewControl extends BaseViewControl {
     modalOff() {
         this.context.modal = false;
         this.requestSong();
+        
+        var thisButton = document.getElementById(this.context.songInfo.title);
+        thisButton.style.display = 'none';
+        var thisCheck = document.getElementById(this.context.songInfo.key);
+        thisCheck.style.display = 'inline-block';
+        
     }
     cancel() {
         this.context.modal = false;
