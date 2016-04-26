@@ -4,7 +4,7 @@
 
 <div>{{ bandDescription }}</div>
 
-<img src="{{ bandImgUrl }}" alt='Image' />
+<img src="{{ bandImgUrl }}" alt='Image' class="bandPic" />
 
 <plat-button plat-tap='goToEdit()'>Edit Info</plat-button>
 
@@ -13,7 +13,7 @@
 <h4>active events</h4>
 
 <plat-foreach plat-context="bandActiveEvents">
-    <div class="row">
+    <div class="row odd-row-{{@even}}">
         <div class="col-phn-4">{{ eventName }}</div>
         <div class="col-phn-4">{{ eventDate }}</div>
         
@@ -32,12 +32,18 @@
 <h4>inactive events</h4>
 
 <plat-foreach plat-context="bandInactiveEvents">
+<<<<<<< HEAD
     <div class="row">
         <div class="col-phn-2">{{ eventName }}</div>
         <div class="col-phn-2">{{ eventDate }}</div>
         <div class="col-phn-2">
             <plat-button class="button-secondary button-small" plat-tap="editEvent(eventKey)">Edit Event</plat-button>
         </div>  
+=======
+    <div class="row odd-row-{{@even}}">
+        <div class="col-phn-4">{{ eventName }}</div>
+        <div class="col-phn-4">{{ eventDate }}</div>
+>>>>>>> 3c399beb04aa22483d53b7bbf672d9c1b507a0b6
         <div class="col-phn-2">
             <plat-button class="button-primary button-small" plat-tap="goToEvent(eventKey)">open</plat-button>
         </div>
@@ -56,9 +62,10 @@
 
 
 <plat-foreach plat-context="songList">
-    <div class="row">
-        <div class="col-phn-5">{{ title }}</div>
-        <div class="col-phn-5">{{ artist }}</div>
+    <div class="row odd-row-{{@even}}">
+        <div class="col-phn-2">{{ @index + 1 }}</div>
+        <div class="col-phn-4">{{ title }}</div>
+        <div class="col-phn-4">{{ artist }}</div>
         <div class="col-phn-2">
             
             <plat-button class="button-danger button-small" plat-tap="bandRemoveSong(originalKey)">x</plat-button>

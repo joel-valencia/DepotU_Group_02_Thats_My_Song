@@ -3,11 +3,25 @@
 <h4>{{ bandData.bandName }}</h4>
 
 <plat-foreach plat-context="songList">
-    <div class="row">
+    <div class="row odd-row-{{@even}}">
         <div class="col-phn-5">{{ title }}</div>
         <div class="col-phn-5">{{ artist }}</div>
         <div class="col-phn-2">
-            <plat-button class="button-success button-small" plat-tap="requestSong(title, artist, originalKey)">request</plat-button>
+            <plat-button id='{{ title }}' class='button-success' plat-tap='modalOn(title, artist, originalKey)'>Request It!</plat-button>
+            <img id ='{{ originalKey }}' style='display: none; margin-bottom: -0.65em' src="http://icons.iconarchive.com/icons/icojam/blueberry-basic/32/check-icon.png" alt="hi">
         </div>
     </div>
 </plat-foreach>
+
+ <plat-modal plat-options='{transition: "fade"}' plat-bind='modal' class='modal-prompt'>
+            <div style='background-color: black' class="prompt-title">Now Play My Song!</div>
+            <div class="prompt-body">
+                <h5>Add a comment! (optional)</h5>
+                <textarea style='width: 90%; font-size: 0.9em'plat-bind='comment' cols="30" rows="3"></textarea>
+            </div>
+            <div style='margin-top: -1em' class="prompt-action">
+                <plat-button style='width:80%' class='button-success' plat-tap='modalOff()'>Send It!</plat-button>
+                <br>
+                <plat-button plat-tap='cancel()'>Cancel</plat-button>
+            </div>
+</plat-modal>

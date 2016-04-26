@@ -9,7 +9,10 @@ export default class EventViewControl extends BaseViewControl {
         eventKey: "",
         eventData: {},
         bandData: {},
-        songList: []
+        songList: [],
+        modal: false,
+        comment: '',
+        songInfo: {}
     };
     
     constructor(private firebaseSvc:FirebaseService) {
@@ -39,12 +42,39 @@ export default class EventViewControl extends BaseViewControl {
         });
     }
     
-    requestSong(songTitle:string, songArtist:string, songKey:string) {
+    requestSong() {
         var eventKey = this.context.eventData.eventKey;
+        var comment = this.context.comment;
+        var songTitle = this.context.songInfo.title;
+        var songArtist = this.context.songInfo.artist;
+        var songKey = this.context.songInfo.key;
         
-        this.firebaseSvc.requestSong(songTitle, songArtist, songKey, eventKey).then((result) => {
+        this.firebaseSvc.requestSong(songTitle, songArtist, songKey, eventKey, comment).then((result) => {
             console.log("requested a song");
         });
+    }
+    
+    modalOn(songTitle:string, songArtist:string, songKey:string) {
+        this.context.modal = true;
+        
+        this.context.songInfo = {
+            title: songTitle,
+            artist: songArtist,
+            key: songKey
+        }
+    }
+    modalOff() {
+        this.context.modal = false;
+        this.requestSong();
+        
+        var thisButton = document.getElementById(this.context.songInfo.title);
+        thisButton.style.display = 'none';
+        var thisCheck = document.getElementById(this.context.songInfo.key);
+        thisCheck.style.display = 'inline-block';
+        
+    }
+    cancel() {
+        this.context.modal = false;
     }
 }
 
