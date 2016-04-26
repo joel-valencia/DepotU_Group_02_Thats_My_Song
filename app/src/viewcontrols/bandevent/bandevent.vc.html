@@ -3,7 +3,7 @@
 <h4>requests</h4>
 
 <plat-foreach plat-context="songRequests">
-    <div class="row">
+    <div class="row odd-row-{{@even}}">
         <div class="col-phn-2">{{ @index + 1 }}</div>
         <div class="col-phn-5">{{ title }}</div>
         <div class="col-phn-5">{{ artist }}</div>

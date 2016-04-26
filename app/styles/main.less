@@ -52,6 +52,7 @@ body {
     height: 100%;
     
     .plat-viewcontrol {
+        padding: 1em;
         padding-top: @navbar-height + 1em;
     }
 }
@@ -76,6 +77,8 @@ h4:first-child {
     margin-right: auto;
     border-radius: 0.3em;
     border: 0.1em solid #555;
+    height: 10em;
+    width: auto;
 }
 
 #map {
@@ -91,9 +94,25 @@ button.plat-button, button.plat-button.button-small {
     margin: 0.2em;
 }
 
+.plat-button {
+    padding: 0.6em 0.8em;
+    line-height: 1em;
+}
+
 // button.plat-button.button-primary {
 //     background-color: #666;
 // }
+
+.row {
+    text-align: left;
+    line-height: 3em;
+    vertical-align: middle;
+    padding-left: 1em;
+}
+
+.odd-row-true {
+    background-color: #ddd;
+}
 
 @media screen and (min-width: 600px) {
     #map {
