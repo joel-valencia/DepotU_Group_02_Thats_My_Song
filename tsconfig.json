@@ -28,6 +28,7 @@
         "app/src/viewcontrols/about/about.vc.ts",
         "app/src/viewcontrols/bandcreateevent/bandcreateevent.vc.ts",
         "app/src/viewcontrols/banddashboard/banddashboard.vc.ts",
+        "app/src/viewcontrols/bandeditevent/bandeditevent.vc.ts",
         "app/src/viewcontrols/bandeditprofile/bandeditprofile.vc.ts",
         "app/src/viewcontrols/bandevent/bandevent.vc.ts",
         "app/src/viewcontrols/bandrequestedsongs/bandrequestedsongs.vc.ts",

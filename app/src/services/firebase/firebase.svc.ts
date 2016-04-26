@@ -181,6 +181,7 @@ export default class FirebaseService extends BaseService {
         })
     }
 
+
     bandAddEvent(newEvent:any) {
         return new this.Promise((fulfill, reject) => {
             try {
@@ -268,6 +269,8 @@ export default class FirebaseService extends BaseService {
 
                 eventFirebase.once("value", (snapshot: any) => {  
                     var temp = snapshot.val();
+                    console.log("temp", temp);
+                    console.log("eventKey", eventKey);
                     temp.eventKey = eventKey;              
                     fulfill(temp);
 
@@ -280,6 +283,22 @@ export default class FirebaseService extends BaseService {
                 reject(err);
             }
         });
+    }
+    
+    updateEventInfo(key: string, newEventInfo: {eventName: string}) {
+        return new this.Promise((fulfill, reject) => {
+            try {
+                var requestsFirebase = new Firebase('https://song-requests.firebaseio.com');
+                var bandFirebase = requestsFirebase.child('events/' + key);
+                
+                bandFirebase.update(newEventInfo);
+                
+                fulfill("updated info");
+                
+            } catch (err) {
+                reject(err);
+            }
+        })
     }
     
     eventActivate(eventKey:string) {

@@ -9,6 +9,7 @@ import UserRequestSongViewControl from '../viewcontrols/userrequestsong/userrequ
 import EventViewControl from '../viewcontrols/event/event.vc';
 import BandEventViewControl from '../viewcontrols/bandevent/bandevent.vc';
 import AboutViewControl from '../viewcontrols/about/about.vc';
+import BandEditEventViewControl from '../viewcontrols/bandeditevent/bandeditevent.vc';
 
 export default class MyApp extends App {
     constructor(router: routing.Router, config: web.IBrowserConfig) {
@@ -21,6 +22,7 @@ export default class MyApp extends App {
             { pattern: 'createevent', view: BandCreateEventViewControl },
             { pattern: 'dashboard', view: BandDashboard },
             { pattern: 'editprofile', view: BandEditProfileViewControl },
+            { pattern: 'bandeditevent/:key', view: BandEditEventViewControl },
             { pattern: 'requestedsongs', view: BandRequestedSongsViewControl },
             { pattern: 'findevent', view: UserFindEventViewControl },
             { pattern: 'requestsong', view: UserRequestSongViewControl },
