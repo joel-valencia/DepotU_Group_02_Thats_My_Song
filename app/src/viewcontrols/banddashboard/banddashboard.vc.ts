@@ -6,6 +6,7 @@ import BandCreateEventViewControl from '../bandcreateevent/bandcreateevent.vc';
 import SessionService from '../../services/session/session.svc';
 import BandEventViewControl from '../bandevent/bandevent.vc';
 import BandEditEventViewControl from '../bandeditevent/bandeditevent.vc';
+
 export default class BandDashboardViewControl extends BaseViewControl {
     templateString: string = require('./banddashboard.vc.html');
 
