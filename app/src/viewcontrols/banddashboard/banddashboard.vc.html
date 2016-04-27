@@ -19,7 +19,7 @@
         <div class="col-phn-6 col-tab-4">{{ eventDate }}</div>
         <div class="col-phn-12 col-tab-4">
             <plat-button class="button-primary button-small" plat-tap="goToEvent(eventKey)">open</plat-button>
-            <plat-button class="button-primary button-outline button-small" plat-tap="editEvent(eventKey)">edit</plat-button>
+            <plat-button class="button-primary button-outline button-small editEvent" plat-tap="editEvent(eventKey)">edit</plat-button>
             <plat-button class="button-danger button-small" plat-tap="eventDeactivate(eventKey)">deactivate</plat-button>
         </div>
     </div>
@@ -33,7 +33,7 @@
         <div class="col-phn-6 col-tab-4">{{ eventDate }}</div>
         <div class="col-phn-12 col-tab-4">
             <plat-button class="button-primary button-small" plat-tap="goToEvent(eventKey)">open</plat-button>
-            <plat-button class="button-primary button-outline button-small" plat-tap="editEvent(eventKey)">edit</plat-button>
+            <plat-button class="button-outline button-small editEvent" plat-tap="editEvent(eventKey)">edit</plat-button>
             <plat-button class="button-success button-small" plat-tap="eventActivate(eventKey)">activate</plat-button>
         </div>
     </div>
@@ -42,8 +42,8 @@
 <br><br>
 <h4>Song List</h4>
 
-<plat-input type="text" placeholder="title" plat-bind="addSongTitle"></plat-input>
-<plat-input type="text" placeholder="artist" plat-bind="addSongArtist"></plat-input>
+<plat-input class='songAdd' type="text" placeholder="title" plat-bind="addSongTitle"></plat-input>
+<plat-input class='songAdd' type="text" placeholder="artist" plat-bind="addSongArtist"></plat-input>
 <plat-button class="button-primary" plat-tap="bandAddSong()">add song</plat-button>
 
 
