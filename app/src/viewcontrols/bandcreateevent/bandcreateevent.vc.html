@@ -1,15 +1,17 @@
-<h1>Hello World!</h1>
+<h1>Event Details</h1>
 <div class="eventFieldsContainer">
     <div class="eventFields">
        <ul>
-            <li>Name<input plat-bind="addEventName" place-holder="Event Name" type="text"></li>
-            <li>Description<input plat-bind="addEventDescription" place-holder="Event Description" type="text"></li>
-            <li>Date<input plat-bind="addEventDate" place-holder="date" type="text"></li>
-            <li>Location</li>
+            <li><input plat-bind="addEventName" placeholder="Event Name" type="text"></li>
             <br>
-            <li class='hide'>Enter an Address<input plat-bind="eventAddress" place-holder="Event Location" type="text" class='hide'></li>
+            <li><input plat-bind="addEventDescription" placeholder="Event Description" type="text"></li>
+            <br>
+            <li><input plat-bind="addEventDate" placeholder="date" type="text"></li>
+            <br>
+            <li class='hide'><input plat-bind="eventAddress" placeholder="Event Location" type="text" class='hide'></li>
             <li style='display: none; color: green' id='confirm'>Location Added!</li>
-            <li> {{ eventAddress }}</li>
+            <!--<li> {{ eventAddress }}</li>-->
+            <br>
             <li><plat-button plat-tap='geocodeAddress()' class='hide'>Enter</plat-button></li>
             <li><h5 class='hide'>Or</h5></li>
             <li><plat-button class='button-primary hide' plat-tap='getEventCoords'>Use Current Location</plat-button></li>
