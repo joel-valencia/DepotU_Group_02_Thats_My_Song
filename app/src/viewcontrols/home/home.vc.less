@@ -4,21 +4,10 @@
     #platui > #variables;
 
     [plat-control="home-vc"] {
-        #map {
-            // width: 500px;
-            // height: 400px;
-            background-color: #CCC;
-            // margin-top: 400px;
-        }
-        #windowLink {
-            color: blue;
-            font-size: 1.5em;
-                        margin-top: 400px;
+        
+    }
+}
 
-        }
-        #windowLink:hover {
-            text-decoration: underline;
-            color: darkblue;
 
         }
         
@@ -60,7 +49,60 @@
             margin-top: 340px;   
             }
 
-        }
+#map {
+    // width: 500px;
+    // height: 400px;
+    background-color: #CCC;
+    // margin-top: 400px;
+}
+#windowLink {
+    color: blue;
+    font-size: 1.5em;
+                margin-top: 400px;
+
+}
+#windowLink:hover {
+    text-decoration: underline;
+    color: darkblue;
+
+}
+
+.coverphoto1{
+    background-image: url('/images/edited.jpg');
+    height:200px;
+    background-position:center bottom;
+    position:absolute;
+    width:100%;
+    background-size: cover;
+    top: 3em;
+    left: 0;
     
-  
+    h1{
+        font-family: "Museo Slab 700 Italic";
+        padding-top:0;
+        margin-bottom:auto;
+        color:white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+    }
+}
+
+.container1{
+        margin-top: 220px;   
+    }
+    
+
+@media screen and (min-width: 600px) {
+    .coverphoto1 {
+        // background-position: center center;
+        height: 320px;
+    }
+    
+    .container1{
+    margin-top: 340px;   
+    }
+
 }
