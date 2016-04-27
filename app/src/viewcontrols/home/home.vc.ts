@@ -74,7 +74,7 @@ export default class HomeViewControl extends BaseViewControl {
             }
     }
     createInfoWindow(eventMarkers: any, eventNames: any, eventKeys: any) {
-        var contentString = '<a id="windowLink" href="http://localhost:3000/event/'+eventKeys+'">'+eventNames+'</a>';
+        var contentString = '<a id="windowLink" href="/event/'+eventKeys+'">'+eventNames+'</a>';
         var infowindow = new google.maps.InfoWindow({
             content: contentString
         });
