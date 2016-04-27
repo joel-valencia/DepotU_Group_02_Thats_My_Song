@@ -1,16 +1,20 @@
-<h4>logged in as {{ bandUsername }}</h4>
+<div class='topDiv'>
+    <br>
+    <h4>logged in as {{ bandUsername }}</h4>
 
-<h3>{{ bandName }}</h3>
+    <h3>{{ bandName }}</h3>
 
-<div>{{ bandDescription }}</div>
-<br>
-<img src="{{ bandImgUrl }}" alt='Image' class="bandPic" />
+    <div>{{ bandDescription }}</div>
+    <br>
+    <img id='image' src="{{ bandImgUrl }}" alt='Image' class="bandPic" />
 
-<plat-button id='editProfile' plat-tap='goToEdit()'>Edit Profile</plat-button>
-<br>
-<br>
-<plat-button id='createEvent' class="button-large" plat-tap="goToCreateEvent()">Create Event</plat-button>
-<br><br><br>    
+    <plat-button id='editProfile' plat-tap='goToEdit()'>Edit Profile</plat-button>
+    <br>
+    <br>
+    <plat-button id='createEvent' class="button-large" plat-tap="goToCreateEvent()">Create Event</plat-button>
+    <br><br><br>
+</div>   
+<br> 
 <h4>Active Events</h4>
 
 <plat-foreach class='borderClass' plat-context="bandActiveEvents">
