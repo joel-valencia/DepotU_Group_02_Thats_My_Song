@@ -12,7 +12,8 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
         loginUsername: "",
         loggedIn: false,
         loggedInBandKey: "",
-        showLogin: false
+        showLogin: false,
+        showRegister: false
     };
     
     constructor(private firebaseSvc:FirebaseService, private sessionSvc:SessionService, private homeVC:HomeViewControl) {
@@ -39,21 +40,13 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
         }
     }
     
-    bandLogin() {
-        this.firebaseSvc.bandLogin(this.context.loginUsername).then((result:string) => {
+    bandLogin(loginUsername:string) {
+        this.firebaseSvc.bandLogin(loginUsername).then((result:string) => {
             console.log("user found with key", result);
             
             this.sessionSvc.logInBand(result);
             
-            
             this.context.loggedIn = true;
-            
-            // this.navigator.navigate(BandDashboardViewControl, {
-            //     parameters: {
-            //         key: result
-            //     }
-            // });
-            
             
             this.goToDashboard();
         }, (err) => {
@@ -69,6 +62,24 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
         window.location.href = "/";
     }
     
+    bandRegister() {
+        var newUser = {
+            username: this.context.registerUsername,
+            bandName: this.context.registerBandName,
+            bandDescription: 'Tell Us About Your Band',
+            bandImgUrl: 'default'
+        }
+        
+        this.firebaseSvc.bandRegister(newUser).then((result) => {
+            console.log("added user to database with key", result)
+            
+            // user created.  now to login.
+            this.bandLogin(this.context.registerUsername);
+        }, (err) => {
+            console.log(err);
+        });
+    }
+    
     goToDashboard() {
         // this is probably bad but we can't access platypus navigator from a template control
         window.location.href = "/dashboard";
@@ -76,6 +87,11 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
     
     toggleShowLogin() {
         this.context.showLogin = !(this.context.showLogin);
+        console.log("toggle");
+    }
+    
+    toggleShowRegister() {
+        this.context.showRegister = !(this.context.showRegister);
         console.log("toggle");
     }
 }
