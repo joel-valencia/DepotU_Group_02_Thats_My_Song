@@ -3,7 +3,7 @@
 <h3>{{ bandName }}</h3>
 
 <div>{{ bandDescription }}</div>
-
+<br>
 <img src="{{ bandImgUrl }}" alt='Image' class="bandPic" />
 
 <plat-button id='editProfile' plat-tap='goToEdit()'>Edit Profile</plat-button>
@@ -18,9 +18,9 @@
         <div class="col-phn-6 col-tab-4">{{ eventName }}</div>
         <div class="col-phn-6 col-tab-4">{{ eventDate }}</div>
         <div class="col-phn-12 col-tab-4">
-            <plat-button class="button-primary button-small" plat-tap="goToEvent(eventKey)">open</plat-button>
+            <plat-button class="button-primary button-small buttonOpen" plat-tap="goToEvent(eventKey)">open</plat-button>
             <plat-button class="button-primary button-outline button-small editEvent" plat-tap="editEvent(eventKey)">edit</plat-button>
-            <plat-button class="button-danger button-small" plat-tap="eventDeactivate(eventKey)">deactivate</plat-button>
+            <plat-button class="button-danger button-small buttonDeactivate" plat-tap="eventDeactivate(eventKey)">deactivate</plat-button>
         </div>
     </div>
 </plat-foreach>
@@ -32,9 +32,9 @@
         <div class="col-phn-6 col-tab-4">{{ eventName }}</div>
         <div class="col-phn-6 col-tab-4">{{ eventDate }}</div>
         <div class="col-phn-12 col-tab-4">
-            <plat-button class="button-primary button-small" plat-tap="goToEvent(eventKey)">open</plat-button>
+            <plat-button class="button-primary button-small buttonOpen" plat-tap="goToEvent(eventKey)">open</plat-button>
             <plat-button class="button-outline button-small editEvent" plat-tap="editEvent(eventKey)">edit</plat-button>
-            <plat-button class="button-success button-small" plat-tap="eventActivate(eventKey)">activate</plat-button>
+            <plat-button class="button-success button-small buttonActivate" plat-tap="eventActivate(eventKey)">activate</plat-button>
         </div>
     </div>
 </plat-foreach>
@@ -44,7 +44,7 @@
 
 <plat-input class='songAdd' type="text" placeholder="title" plat-bind="addSongTitle"></plat-input>
 <plat-input class='songAdd' type="text" placeholder="artist" plat-bind="addSongArtist"></plat-input>
-<plat-button class="button-primary" plat-tap="bandAddSong()">add song</plat-button>
+<plat-button class="button-primary buttonOpen" plat-tap="bandAddSong()">add song</plat-button>
 
 
 <plat-foreach class='borderClass' plat-context="songList">

@@ -1,13 +1,15 @@
 <h3 plat-bind='bandName'> {{ bandName }} </h3>
 
-<textarea id="" cols="30" rows="10" plat-bind='bandDescription' placeholder='Description'> {{ bandDescription }}</textarea>
+<textarea id="desc" cols="50" rows="10" plat-bind='bandDescription' placeholder='Description'> {{ bandDescription }}</textarea>
 <br><br>
-<input type="file" plat-react="showFile()"><br>
+<plat-file class='file-primary' plat-react="showFile()"></plat-file>
+<br>
+<br>
 <img id='preview' src=" {{ bandImgUrl }}" height="300" alt="Image preview...">
 <br>
 <canvas id="myCanvas" style="border:1px solid #000000; display: none"></canvas>
 <br><br>
-<plat-button class='button-success' plat-tap='updateInfo()'>Save Changes</plat-button>
+<plat-button id='save' class='button-success' plat-tap='updateInfo()'>Save Changes</plat-button>
 
 
 
