@@ -355,7 +355,22 @@ export default class FirebaseService extends BaseService {
                         eventsArray.push(temp);
                     }
                     
-                    fulfill(eventsArray);
+                    // add band name to each event object
+                    for (var index in eventsArray) {
+                        // console.log(eventsArray[index].eventKey);
+                        var counter = 0;
+                        
+                        this.bandGetInfo(eventsArray[index].bandKey).then((result:any) => {
+                            // console.log(result.bandName);
+                            eventsArray[counter].bandName = result.bandName;
+                            counter++
+                            if (counter == eventsArray.length) {
+                                // reached last active event.  fulfill promise.
+                                // console.log(eventsArray);
+                                fulfill(eventsArray);
+                            }
+                        });
+                    }
 
                 }, (errorObject: any) => {
                     console.log("The read failed: " + errorObject.code);
