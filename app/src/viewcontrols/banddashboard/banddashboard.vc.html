@@ -13,7 +13,7 @@
 <br><br><br>    
 <h4>Active Events</h4>
 
-<plat-foreach plat-context="bandActiveEvents">
+<plat-foreach class='borderClass' plat-context="bandActiveEvents">
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-6 col-tab-4">{{ eventName }}</div>
         <div class="col-phn-6 col-tab-4">{{ eventDate }}</div>
@@ -27,7 +27,7 @@
 <br><br>
 <h4>Inactive Events</h4>
 
-<plat-foreach plat-context="bandInactiveEvents">
+<plat-foreach class='borderClass' plat-context="bandInactiveEvents">
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-6 col-tab-4">{{ eventName }}</div>
         <div class="col-phn-6 col-tab-4">{{ eventDate }}</div>
@@ -47,7 +47,7 @@
 <plat-button class="button-primary" plat-tap="bandAddSong()">add song</plat-button>
 
 
-<plat-foreach plat-context="songList">
+<plat-foreach class='borderClass' plat-context="songList">
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-2">{{ @index + 1 }}</div>
         <div class="col-phn-4">{{ title }}</div>
