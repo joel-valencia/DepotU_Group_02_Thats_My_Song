@@ -112,7 +112,6 @@ export default class HomeViewControl extends BaseViewControl {
     setPosition(position: any) {
         this.context.lat = position.coords.latitude;
         this.context.lng = position.coords.longitude;
-        console.log(this.context.lat);
         this.initMap();
         
     }

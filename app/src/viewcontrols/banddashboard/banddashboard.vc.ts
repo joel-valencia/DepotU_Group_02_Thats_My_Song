@@ -99,12 +99,15 @@ export default class BandDashboardViewControl extends BaseViewControl {
        
     
     bandRemoveSong(key:string) {
-        var bandKey = this.context.bandKey;
-        var songKey = key;
-        
-        this.firebaseSvc.bandRemoveSong(bandKey, songKey).then((result:any) => {
-            this.bandGetSongList(this.context.bandKey);
-        });
+        if (confirm('Are you sure you want to delete this song?')) {
+            
+            var bandKey = this.context.bandKey;
+            var songKey = key;
+            
+            this.firebaseSvc.bandRemoveSong(bandKey, songKey).then((result:any) => {
+                this.bandGetSongList(this.context.bandKey);
+            });
+        }
     }
     
     bandGetAllEvents(bandKey:string) {

@@ -6,54 +6,55 @@
 
 <img src="{{ bandImgUrl }}" alt='Image' class="bandPic" />
 
-<plat-button plat-tap='goToEdit()'>Edit Profile</plat-button>
+<plat-button id='editProfile' plat-tap='goToEdit()'>Edit Profile</plat-button>
+<br>
+<br>
+<plat-button id='createEvent' class="button-large" plat-tap="goToCreateEvent()">Create Event</plat-button>
+<br><br><br>    
+<h4>Active Events</h4>
 
-<plat-button class="button-secondary" plat-tap="goToCreateEvent()">Create Event</plat-button>
-
-<h4>active events</h4>
-
-<plat-foreach plat-context="bandActiveEvents">
+<plat-foreach class='borderClass' plat-context="bandActiveEvents">
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-6 col-tab-4">{{ eventName }}</div>
         <div class="col-phn-6 col-tab-4">{{ eventDate }}</div>
         <div class="col-phn-12 col-tab-4">
             <plat-button class="button-primary button-small" plat-tap="goToEvent(eventKey)">open</plat-button>
-            <plat-button class="button-secondary button-small" plat-tap="editEvent(eventKey)">edit</plat-button>
+            <plat-button class="button-primary button-outline button-small" plat-tap="editEvent(eventKey)">edit</plat-button>
             <plat-button class="button-danger button-small" plat-tap="eventDeactivate(eventKey)">deactivate</plat-button>
         </div>
     </div>
 </plat-foreach>
+<br><br>
+<h4>Inactive Events</h4>
 
-<h4>inactive events</h4>
-
-<plat-foreach plat-context="bandInactiveEvents">
+<plat-foreach class='borderClass' plat-context="bandInactiveEvents">
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-6 col-tab-4">{{ eventName }}</div>
         <div class="col-phn-6 col-tab-4">{{ eventDate }}</div>
         <div class="col-phn-12 col-tab-4">
             <plat-button class="button-primary button-small" plat-tap="goToEvent(eventKey)">open</plat-button>
-            <plat-button class="button-secondary button-small" plat-tap="editEvent(eventKey)">edit</plat-button>
+            <plat-button class="button-primary button-outline button-small" plat-tap="editEvent(eventKey)">edit</plat-button>
             <plat-button class="button-success button-small" plat-tap="eventActivate(eventKey)">activate</plat-button>
         </div>
     </div>
 </plat-foreach>
 
-
-<h4>song list</h4>
+<br><br>
+<h4>Song List</h4>
 
 <plat-input type="text" placeholder="title" plat-bind="addSongTitle"></plat-input>
 <plat-input type="text" placeholder="artist" plat-bind="addSongArtist"></plat-input>
 <plat-button class="button-primary" plat-tap="bandAddSong()">add song</plat-button>
 
 
-<plat-foreach plat-context="songList">
+<plat-foreach class='borderClass' plat-context="songList">
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-2">{{ @index + 1 }}</div>
         <div class="col-phn-4">{{ title }}</div>
         <div class="col-phn-4">{{ artist }}</div>
         <div class="col-phn-2">
             
-            <plat-button class="button-danger button-small" plat-tap="bandRemoveSong(originalKey)">x</plat-button>
+            <plat-button id='delete' class="button-small" plat-tap="bandRemoveSong(originalKey)">delete</plat-button>
         </div>
     </div>
 </plat-foreach>
