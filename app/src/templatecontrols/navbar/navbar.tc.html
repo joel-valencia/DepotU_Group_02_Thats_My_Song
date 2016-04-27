@@ -17,7 +17,7 @@
         
         <li><a href="/about">about</a></li>
         
-        <div class="bandLogin" plat-visible="{{ !loggedIn }}">
+        <div plat-visible="{{ !loggedIn }}">
             <li plat-tap="toggleShowRegister()">register</li>
             <div class="bandRegister" plat-visible="{{ showRegister }}">
                 <plat-input type="text" placeholder="username" plat-bind="registerUsername"></plat-input>
