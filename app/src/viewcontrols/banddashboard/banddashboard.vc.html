@@ -19,9 +19,9 @@
 
 <plat-foreach class='borderClass' plat-context="bandActiveEvents">
     <div class="row odd-row-{{@even}}">
-        <div class="col-phn-6 col-tab-4">{{ eventName }}</div>
+        <div class="col-phn-6 col-tab-5">{{ eventName }}</div>
         <div class="col-phn-6 col-tab-4">{{ eventDate }}</div>
-        <div class="col-phn-12 col-tab-4">
+        <div class="col-phn-12 col-tab-3">
             <plat-button class="button-primary button-small buttonOpen" plat-tap="goToEvent(eventKey)">open</plat-button>
             <plat-button class="button-primary button-outline button-small editEvent" plat-tap="editEvent(eventKey)">edit</plat-button>
             <plat-button class="button-danger button-small buttonDeactivate" plat-tap="eventDeactivate(eventKey)">deactivate</plat-button>
@@ -33,9 +33,9 @@
 
 <plat-foreach class='borderClass' plat-context="bandInactiveEvents">
     <div class="row odd-row-{{@even}}">
-        <div class="col-phn-6 col-tab-4">{{ eventName }}</div>
+        <div class="col-phn-6 col-tab-5">{{ eventName }}</div>
         <div class="col-phn-6 col-tab-4">{{ eventDate }}</div>
-        <div class="col-phn-12 col-tab-4">
+        <div class="col-phn-12 col-tab-3">
             <plat-button class="button-primary button-small buttonOpen" plat-tap="goToEvent(eventKey)">open</plat-button>
             <plat-button class="button-outline button-small editEvent" plat-tap="editEvent(eventKey)">edit</plat-button>
             <plat-button class="button-success button-small buttonActivate" plat-tap="eventActivate(eventKey)">activate</plat-button>
@@ -53,10 +53,10 @@
 
 <plat-foreach class='borderClass' plat-context="songList">
     <div class="row odd-row-{{@even}}">
-        <div class="col-phn-2">{{ @index + 1 }}</div>
+        <div class="col-phn-1">{{ @index + 1 }}</div>
         <div class="col-phn-4">{{ title }}</div>
         <div class="col-phn-4">{{ artist }}</div>
-        <div class="col-phn-2">
+        <div class="col-phn-3">
             
             <plat-button id='delete' class="button-small" plat-tap="bandRemoveSong(originalKey)">delete</plat-button>
         </div>
