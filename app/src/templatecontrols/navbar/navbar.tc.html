@@ -1,0 +1,32 @@
+<div id="navbar">
+    <div id="logo">that's my song!</div>
+    <div id="menu-button">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</div>
+
+<div id="menu" style="display: none;">
+    <div id="navigation">
+        <li><a href="/">home</a></li>
+        
+        <div plat-visible="{{ loggedIn }}">
+            <li plat-tap="goToDashboard()">dashboard</li>
+        </div>
+        
+        <li><a href="/about">about</a></li>
+        
+        <div class="bandLogin" plat-visible="{{ !loggedIn }}">
+            <li plat-tap="toggleShowLogin()">login</li>
+            <div class="bandLogin" plat-visible="{{ showLogin }}">
+                <plat-input type="text" placeholder="username" plat-bind="loginUsername"></plat-input>
+                <plat-button class="button-primary" plat-tap="bandLogin()">login</plat-button>
+            </div>
+        </div>
+        
+        <div class="bandContinue" plat-visible="{{ loggedIn }}">
+            <li plat-tap="bandLogout()">logout</li>
+        </div>
+    </div>
+</div>

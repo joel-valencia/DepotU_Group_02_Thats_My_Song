@@ -25,6 +25,7 @@
         "app/src/services/base/base.svc.ts",
         "app/src/services/firebase/firebase.svc.ts",
         "app/src/services/session/session.svc.ts",
+        "app/src/templatecontrols/navbar/navbar.tc.ts",
         "app/src/viewcontrols/about/about.vc.ts",
         "app/src/viewcontrols/bandcreateevent/bandcreateevent.vc.ts",
         "app/src/viewcontrols/banddashboard/banddashboard.vc.ts",
