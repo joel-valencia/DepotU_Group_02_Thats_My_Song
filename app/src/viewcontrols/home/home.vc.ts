@@ -11,13 +11,8 @@ export default class HomeViewControl extends BaseViewControl {
     templateString: string = require('./home.vc.html');
 
     context: any = {
-        registerUsername: "",
-        registerBandName: "",
-        loginUsername: "",
         lat: 0,
         lng: 0,
-        loggedIn: false,
-        loggedInBandKey: "",
         allActiveEvents: []
     };
     
@@ -27,15 +22,6 @@ export default class HomeViewControl extends BaseViewControl {
     }
     
     navigatedTo() {
-        // get band key from local storage
-        this.context.loggedInBandKey = this.sessionSvc.checkLoggedInBand();
-        console.log("logged in user key:", this.context.loggedInBandKey);
-        
-        // if logged in set logged in variable to true
-        if (this.context.loggedInBandKey !== "null") {
-            this.context.loggedIn = true;
-        }
-        
         // get all active events
         this.firebaseSvc.getAllActiveEvents().then((result) => {
             console.log("all active events", result);
@@ -63,35 +49,13 @@ export default class HomeViewControl extends BaseViewControl {
         });
     }
     
-    bandLogin() {
-        this.firebaseSvc.bandLogin(this.context.loginUsername).then((result:string) => {
-            console.log("user found with key", result);
-            
-            this.sessionSvc.logInBand(result);
-            
-            this.navigator.navigate(BandDashboardViewControl, {
-                parameters: {
-                    key: result
-                }
-            }); 
-        }, (err) => {
-            console.log(err);
-        });
-    }
-    
-    bandLogout() {
-        this.sessionSvc.logOutBand();
-        this.context.loggedIn = false;
-        console.log("logged out");
-    }
-    
-    goToDashboard() {
-        this.navigator.navigate(BandDashboardViewControl, {
-            parameters: {
-                key: this.context.loggedInBandKey
-            }
-        }); 
-    }
+    // goToDashboard() {
+    //     this.navigator.navigate(BandDashboardViewControl, {
+    //         parameters: {
+    //             key: this.context.loggedInBandKey
+    //         }
+    //     }); 
+    // }
     
     initMap() {
             var mapDiv = document.getElementById('map');
@@ -158,6 +122,10 @@ export default class HomeViewControl extends BaseViewControl {
                 key: key
             }
         }); 
+    }
+    
+    test() {
+        console.log("test");
     }
 }
 
