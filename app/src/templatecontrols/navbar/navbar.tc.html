@@ -18,10 +18,17 @@
         <li><a href="/about">about</a></li>
         
         <div class="bandLogin" plat-visible="{{ !loggedIn }}">
+            <li plat-tap="toggleShowRegister()">register</li>
+            <div class="bandRegister" plat-visible="{{ showRegister }}">
+                <plat-input type="text" placeholder="username" plat-bind="registerUsername"></plat-input>
+                <plat-input type="text" placeholder="band name" plat-bind="registerBandName"></plat-input>
+                <plat-button class="button-primary" plat-tap="bandRegister()">register</plat-button>
+            </div>
+            
             <li plat-tap="toggleShowLogin()">login</li>
             <div class="bandLogin" plat-visible="{{ showLogin }}">
                 <plat-input type="text" placeholder="username" plat-bind="loginUsername"></plat-input>
-                <plat-button class="button-primary" plat-tap="bandLogin()">login</plat-button>
+                <plat-button class="button-primary" plat-tap="bandLogin(loginUsername)">login</plat-button>
             </div>
         </div>
         

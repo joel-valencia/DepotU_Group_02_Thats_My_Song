@@ -33,30 +33,6 @@ export default class HomeViewControl extends BaseViewControl {
         
     }
     
-    
-    bandRegister() {
-        var newUser = {
-            username: this.context.registerUsername,
-            bandName: this.context.registerBandName,
-            bandDescription: 'Tell Us About Your Band',
-            bandImgUrl: 'default'
-        }
-        
-        this.firebaseSvc.bandRegister(newUser).then((result) => {
-            console.log("added user to database with key", result)
-        }, (err) => {
-            console.log(err);
-        });
-    }
-    
-    // goToDashboard() {
-    //     this.navigator.navigate(BandDashboardViewControl, {
-    //         parameters: {
-    //             key: this.context.loggedInBandKey
-    //         }
-    //     }); 
-    // }
-    
     initMap() {
             var mapDiv = document.getElementById('map');
             var map = new google.maps.Map(mapDiv, {
