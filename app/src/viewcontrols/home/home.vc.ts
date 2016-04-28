@@ -41,7 +41,7 @@ export default class HomeViewControl extends BaseViewControl {
             });
         
             var marker = new google.maps.Marker({
-               position: {lat: this.context.lat, lng: this.context.lng},
+               position: <Object> {lat: this.context.lat, lng: this.context.lng},
                map: map,
                title: 'This is me!',
                icon: 'http://earth.google.com/images/kml-icons/track-directional/track-8.png'
@@ -61,8 +61,11 @@ export default class HomeViewControl extends BaseViewControl {
             var eventKeys: any = [];
             for (var i=0; i < this.context.allActiveEvents.length; i++) {
                 
+                var latitude = this.context.allActiveEvents[i].eventLocation.lat;
+                var longitude = this.context.allActiveEvents[i].eventLocation.lng;
+                
                 var eventMarkers = new google.maps.Marker({
-                    position: this.context.allActiveEvents[i].eventLocation,
+                    position: {lat: parseFloat(latitude), lng: parseFloat(longitude)},
                     map: map,
                     title: this.context.allActiveEvents[i].eventName,
                     animation: google.maps.Animation.DROP,
