@@ -1,14 +1,14 @@
 <h3>{{ eventData.eventName }}</h3>
 
-<h4 plat-tap='viewProfile()'>{{ bandData.bandName }}</h4>
+<h4 id='bandName' plat-tap='viewProfile()'>{{ bandData.bandName }}</h4>
 
 <plat-foreach plat-context="songList">
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-12 col-tab-4 titleColumn">{{ title }}</div>
         <div class="col-phn-7 col-tab-4 artistColumn">{{ artist }}</div>
         <div class="col-phn-5 col-tab-4 buttonsColumn">
-            <plat-button id='{{ title }}' class='button-success' plat-tap='modalOn(title, artist, originalKey)'>Request It!</plat-button>
-            <img id ='{{ originalKey }}' style='display: none; margin-bottom: -0.65em' src="http://icons.iconarchive.com/icons/icojam/blueberry-basic/32/check-icon.png" alt="hi">
+            <plat-button id='{{ title }}' class='button-success requestButt' plat-tap='modalOn(title, artist, originalKey)'>Request It!</plat-button>
+            <img id ='{{ originalKey }}' class='checkImg' src="http://icons.iconarchive.com/icons/icojam/blueberry-basic/32/check-icon.png" alt="hi">
         </div>
     </div>
 </plat-foreach>

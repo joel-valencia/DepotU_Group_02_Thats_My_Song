@@ -4,6 +4,27 @@
     #platui > #variables;
 
     [plat-control="event-vc"] {
+        #bandName:hover {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        .requestButt:hover {
+            color: white;
+            background-color: green;
+        }
+        
+        .checkImg {
+            display: none;
+            margin-bottom: -0.6em;
+        }
+    }
+}
 
+@media screen and (max-width: 700px) {
+    .checkImg {
+        margin-bottom: 0em !important;
+        margin-top: -1em;
     }
 }
