@@ -2,7 +2,7 @@
     <h1>What is your song request?</h1>
     </div> 
 <div class="container1"> 
-<h4>fans - find an event</h4>
+<h4>find an event</h4>
 <plat-foreach plat-context="allActiveEvents">
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-6 col-tab-5">{{ eventName }}</div>
@@ -13,8 +13,12 @@
     </div>
 </plat-foreach>
 </div>  
-<br>
-<br>
-<br>
+
 <div id="map"></div>
 
+<div plat-visible="{{ !loggedIn }}">
+    <h4>in a band?</h4>
+
+    <plat-button class="button-success" plat-tap="openRegister()">register</plat-button>
+    <plat-button class="button-primary" plat-tap="openRegister()">login</plat-button>
+</div>

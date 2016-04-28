@@ -4,6 +4,7 @@ import FirebaseService from '../../services/firebase/firebase.svc';
 import BandDashboardViewControl from '../banddashboard/banddashboard.vc';
 import SessionService from '../../services/session/session.svc';
 import EventViewControl from '../event/event.vc';
+import NavbarTemplateControl from '../../templatecontrols/navbar/navbar.tc';
 
 declare var google:any;
 
@@ -13,7 +14,8 @@ export default class HomeViewControl extends BaseViewControl {
     context: any = {
         lat: 0,
         lng: 0,
-        allActiveEvents: []
+        allActiveEvents: [],
+        loggedIn: false
     };
     
     constructor(private firebaseSvc:FirebaseService, private sessionSvc:SessionService) {
@@ -31,6 +33,15 @@ export default class HomeViewControl extends BaseViewControl {
             }
         });
         
+        // get band key from local storage
+        this.context.loggedInBandKey = this.sessionSvc.checkLoggedInBand();
+        // console.log("logged in user key:", this.context.loggedInBandKey);
+        
+        // if logged in set logged in variable to true
+        if (this.context.loggedInBandKey !== "null") {
+            this.context.loggedIn = true;
+        }
+
     }
     
     initMap() {
@@ -100,8 +111,13 @@ export default class HomeViewControl extends BaseViewControl {
         }); 
     }
     
-    test() {
-        console.log("test");
+    openRegister() {
+        document.getElementById('menu').style.display = "block";
+        var e = <HTMLElement>document.getElementsByClassName('bandRegister')[0];
+        e.style.display = "block";
+        
+        var first = <HTMLElement>e.firstElementChild;
+        first.focus();
     }
 }
 
