@@ -1,15 +1,14 @@
+<h3>{{ eventData.eventName }}</h3>
+
+<h4>requests</h4>
+
 <div id="requests">
-    <h3>{{ eventData.eventName }}</h3>
-
-    <h4>requests</h4>
-
     <plat-foreach plat-context="songRequests">
         <div class="row odd-row-{{@even}}">
-            <div class="col-phn-2">{{ @index + 1 }}</div>
-            <div class="col-phn-5">{{ title }}</div>
-            <div class="col-phn-5">{{ artist }}</div>
+            <div class="col-phn-12 col-tab-4 titleColumn">{{ title }}</div>
+            <div class="col-phn-12 col-tab-4 artistColumn">{{ artist }}</div>
             
-            <div class="comment col-phn-10 col-phn-offset-2" plat-visible="{{ comment }}">
+            <div class="comment col-phn-12 col-tab-4" plat-visible="{{ comment }}">
                 {{ comment }}
             </div>
         </div>
