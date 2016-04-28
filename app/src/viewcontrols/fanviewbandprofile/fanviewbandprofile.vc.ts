@@ -7,7 +7,10 @@ export default class FanViewBandProfileViewControl extends BaseViewControl {
     templateString: string = require('./fanviewbandprofile.vc.html');
 
     context: any = {
-        bandKey: ''
+        bandKey: '',
+        bandName: '',
+        bandDescription: '',
+        bandImgUrl: ''
     };
     
     constructor(private firebaseSvc: FirebaseService, private sessionSvc:SessionService) {
@@ -17,7 +20,7 @@ export default class FanViewBandProfileViewControl extends BaseViewControl {
     navigatedTo(parameters:any) {
         console.log('here');
         
-        this.context.bandKey = this.sessionSvc.checkLoggedInBand();
+        this.context.bandKey = parameters.key
         
         this.bandGetInfo(this.context.bandKey);
     }
