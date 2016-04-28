@@ -59,7 +59,7 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
         this.context.loggedIn = false;
         console.log("logged out");
         // console.log("path", window.location.pathname);
-        window.location.href = "/";
+        this.goToHome();
     }
     
     bandRegister() {
