@@ -9,13 +9,13 @@
 
 <div id="menu" style="display: none;">
     <div id="navigation">
-        <li><a href="/">home</a></li>
+        <li plat-tap="goToHome()">home</li>
         
         <div plat-visible="{{ loggedIn }}">
             <li plat-tap="goToDashboard()">dashboard</li>
         </div>
         
-        <li><a href="/about">about</a></li>
+        <li plat-tap="goToAbout()">about</li>
         
         <div plat-visible="{{ !loggedIn }}">
             <li plat-tap="toggleShowRegister()">register</li>

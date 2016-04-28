@@ -82,7 +82,20 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
     
     goToDashboard() {
         // this is probably bad but we can't access platypus navigator from a template control
-        window.location.href = "/dashboard";
+        document.getElementById('menu').style.display = "none";
+        window.location.href = "/#!/dashboard";
+    };
+    
+    goToAbout() {
+        // this is probably bad but we can't access platypus navigator from a template control
+        document.getElementById('menu').style.display = "none";
+        window.location.href = "/#!/about";
+    };
+    
+    goToHome() {
+        // this is probably bad but we can't access platypus navigator from a template control
+        document.getElementById('menu').style.display = "none";
+        window.location.href = "/#!/";
     };
     
     toggleShowLogin() {
@@ -91,6 +104,16 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
     }
     
     toggleShowRegister() {
+        // make sure context variable is synced with current visibility, 
+        // since it can be made visible bypassing the context value
+        var e = <HTMLElement>document.getElementsByClassName('bandRegister')[0];
+        var registerDisplay = e.style.display;
+        
+        if (registerDisplay == "block") {
+            this.context.showRegister = true;
+        }
+        
+        
         this.context.showRegister = !(this.context.showRegister);
         console.log("toggle");
     }
