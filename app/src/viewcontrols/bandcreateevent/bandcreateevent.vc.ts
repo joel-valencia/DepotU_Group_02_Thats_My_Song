@@ -58,6 +58,12 @@ export default class BandCreateEventViewControl extends BaseViewControl {
     }
     
     setEventCoords(position: any) {
+       var hideElements = document.getElementsByClassName('hide');
+       for (let i = 0; i < hideElements.length; i++) {
+           let element = <HTMLElement> hideElements[i];
+           element.style.display = 'none';
+       }
+       document.getElementById('confirm').style.display = 'inline-block';
        this.context.addEventLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
        console.log(this.context.addEventLocation);
     }

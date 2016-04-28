@@ -1,23 +1,25 @@
-<h1>Event Details</h1>
-<div class="eventFieldsContainer">
-    <div class="eventFields">
-       <ul>
-            <li><input plat-bind="addEventName" placeholder="Event Name" type="text"></li>
-            <br>
-            <li><input plat-bind="addEventDescription" placeholder="Event Description" type="text"></li>
-            <br>
-            <li><input plat-bind="addEventDate" placeholder="date" type="text"></li>
-            <br>
-            <li class='hide'><input plat-bind="eventAddress" placeholder="Event Location" type="text" class='hide'></li>
-            <li style='display: none; color: green' id='confirm'>Location Added!</li>
-            <!--<li> {{ eventAddress }}</li>-->
-            <br>
-            <li><plat-button plat-tap='geocodeAddress()' class='hide'>Enter</plat-button></li>
-            <li><h5 class='hide'>Or</h5></li>
-            <li><plat-button class='button-primary hide' plat-tap='getEventCoords'>Use Current Location</plat-button></li>
-      </ul>
-    </div>
-    <br><br>
-    <plat-button class='button-success' plat-tap="bandAddEvent()">Add Event</plat-button>
+<h1>Create an Event</h1>
+<br>
+<br>
+<input class='inputField' plat-bind="addEventName" placeholder="Event Name" type="text">
+<br>
+<br>
+<input class='inputField' plat-bind="addEventDescription" placeholder="Event Description" type="text">
+<br>
+<br>
+<input class='inputField' plat-bind="addEventDate" placeholder="Date" type="text">
+<br>
+<br>
+<p style='display: none; color: green' id='confirm'>Location Added!</p>
+<input class='hide inputField' plat-bind="eventAddress" placeholder="Enter an Address" type="text" class='hide'>
+<br>
+<plat-button id='enterButt' plat-tap='geocodeAddress()' class='hide'>Enter</plat-button>
+<br>
+<h5 class='hide'>Or</h5>
+<plat-button id='locationButt' class='button-primary hide' plat-tap='getEventCoords'>Use Current Location</plat-button>
+<br>
+<br>
+<br>
+<plat-button id='addButt' class='button-success button-jumbo' plat-tap="bandAddEvent()">Add Event</plat-button>
 
 </div>
