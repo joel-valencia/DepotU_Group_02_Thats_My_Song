@@ -15,7 +15,7 @@ export default class MyApp extends App {
     constructor(router: routing.Router, config: web.IBrowserConfig) {
         super();
 
-		config.routingType = config.STATE;
+		// config.routingType = config.STATE;
 
         router.configure([
             { pattern: '', view: HomeViewControl },
