@@ -138,10 +138,10 @@ button.plat-button, button.plat-button.button-small {
 
 .row {
     text-align: left;
-    line-height: 3em;
+    line-height: 1.5em;
     vertical-align: middle;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
 }
 
 .odd-row-true {
@@ -162,10 +162,41 @@ button.plat-button, button.plat-button.button-small {
     }
 }
 
+.buttonsColumn {
+    text-align: right;
+    padding: 0.3em;
+}
+
+.titleColumn {
+    font-weight: bold;
+}
+
+.artistColumn {
+    font-style: italic;
+}
+
+.nameColumn {
+    font-weight: bold;
+}
+
+.dateColumn {
+    
+}
+
 @media screen and (min-width: 600px) {
     #map {
         width: 550px;
         height: 350px;
+    }
+    
+    .row {
+        line-height: 3em;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+    
+    .buttonsColumn {
+        padding: 0;
     }
 }
 
