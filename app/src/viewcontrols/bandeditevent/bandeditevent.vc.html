@@ -1,11 +1,16 @@
-<h1>Hello World!</h1>
-<textarea type="text" plat-bind='eventName'> {{ eventName }}</textarea>
-<textarea id="" cols="30" rows="10" plat-bind='eventDescription'> {{ eventDescription }}</textarea>
-<br><br>
-<textarea type="text" plat-bind='eventDate'> {{ eventDate }}</textarea>
+<h1>Edit Your Event</h1>
 <br>
-<br><br>
-<plat-button class='button-success' plat-tap='updateEventInfo()'>Save Changes</plat-button>
+<input id="eventEditName" plat-bind='eventName' placeholder="{{ eventName }}">
+<br>
+<br>
+<input id='eventEditDate' type="text" plat-bind='eventDate' placeholder='{{ eventDate }}'>
+<br>
+<br>
+<textarea id="eventEditDesc" cols="30" rows="5" plat-bind='eventDescription'> {{ eventDescription }}</textarea>
+<br>
+<br>
+<br>
+<plat-button id='saveButt' class='button-success button-large' plat-tap='updateEventInfo()'>Save Changes</plat-button>
 
 
 
