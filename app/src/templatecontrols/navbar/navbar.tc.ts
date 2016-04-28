@@ -99,6 +99,16 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
     };
     
     toggleShowLogin() {
+        // make sure context variable is synced with current visibility, 
+        // since it can be made visible bypassing the context value
+        var loginElement = <HTMLElement>document.getElementsByClassName('bandLogin')[0];
+        var loginDisplay = loginElement.style.display;
+        
+        if (loginDisplay == "block") {
+            this.context.showLogin = true;
+        }
+        
+        this.context.showRegister = false;
         this.context.showLogin = !(this.context.showLogin);
         console.log("toggle");
     }
@@ -106,14 +116,14 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
     toggleShowRegister() {
         // make sure context variable is synced with current visibility, 
         // since it can be made visible bypassing the context value
-        var e = <HTMLElement>document.getElementsByClassName('bandRegister')[0];
-        var registerDisplay = e.style.display;
+        var registerElement = <HTMLElement>document.getElementsByClassName('bandRegister')[0];
+        var registerDisplay = registerElement.style.display;
         
         if (registerDisplay == "block") {
             this.context.showRegister = true;
         }
         
-        
+        this.context.showLogin = false;
         this.context.showRegister = !(this.context.showRegister);
         console.log("toggle");
     }

@@ -122,6 +122,15 @@ export default class HomeViewControl extends BaseViewControl {
         var first = <HTMLElement>e.firstElementChild;
         first.focus();
     }
+    
+    openLogin() {
+        document.getElementById('menu').style.display = "block";
+        var e = <HTMLElement>document.getElementsByClassName('bandLogin')[0];
+        e.style.display = "block";
+        
+        var first = <HTMLElement>e.firstElementChild;
+        first.focus();
+    }
 }
 
 register.viewControl('home-vc', HomeViewControl, [FirebaseService, SessionService]);
