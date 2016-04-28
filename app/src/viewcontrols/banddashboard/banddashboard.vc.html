@@ -16,7 +16,10 @@
 </div>   
 <br> 
 <h4>Active Events</h4>
-
+<div class="row">
+<div class="col-phn-6 col-tab-5"><h5>Event</h5></div>
+<div class="col-phn-6 col-tab-4"><h5>Location</h5></div>
+</div>
 <plat-foreach class='borderClass' plat-context="bandActiveEvents">
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-6 col-tab-5">{{ eventName }}</div>
@@ -30,7 +33,10 @@
 </plat-foreach>
 <br><br>
 <h4>Inactive Events</h4>
-
+<div class="row">
+<div class="col-phn-6 col-tab-5"><h5>Event</h5></div>
+<div class="col-phn-6 col-tab-4"><h5>Location</h5></div>
+</div>
 <plat-foreach class='borderClass' plat-context="bandInactiveEvents">
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-6 col-tab-5">{{ eventName }}</div>
