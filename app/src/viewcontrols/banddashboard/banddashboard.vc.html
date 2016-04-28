@@ -18,12 +18,12 @@
 <h4>Active Events</h4>
 <div class="row">
 <div class="col-phn-6 col-tab-5"><h5>Event</h5></div>
-<div class="col-phn-6 col-tab-4"><h5>Location</h5></div>
+<div class="col-phn-6 col-tab-4"><h5>Date</h5></div>
 </div>
 <plat-foreach class='borderClass' plat-context="bandActiveEvents">
     <div class="row odd-row-{{@even}}">
         <div class="col-phn-6 col-tab-5">{{ eventName }}</div>
-        <div class="col-phn-6 col-tab-4">{{ eventDate }}</div>
+        <div class="col-phn-6 col-tab-4">{{ eventDate}}</div>
         <div class="col-phn-12 col-tab-3">
             <plat-button class="button-primary button-small buttonOpen" plat-tap="goToEvent(eventKey)">open</plat-button>
             <plat-button class="button-primary button-outline button-small editEvent" plat-tap="editEvent(eventKey)">edit</plat-button>
@@ -35,7 +35,7 @@
 <h4>Inactive Events</h4>
 <div class="row">
 <div class="col-phn-6 col-tab-5"><h5>Event</h5></div>
-<div class="col-phn-6 col-tab-4"><h5>Location</h5></div>
+<div class="col-phn-6 col-tab-4"><h5>Date</h5></div>
 </div>
 <plat-foreach class='borderClass' plat-context="bandInactiveEvents">
     <div class="row odd-row-{{@even}}">
@@ -68,3 +68,15 @@
         </div>
     </div>
 </plat-foreach>
+<br><br>
+<div class="footer-social-icons">
+    <h4 class="_14">Follow us on</h4>
+    <ul class="social-icons">
+        <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-rss"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-youtube"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+        <li><a href="" class="social-icon"> <i class="fa fa-google-plus"></i></a></li>
+    </ul>
+</div>
