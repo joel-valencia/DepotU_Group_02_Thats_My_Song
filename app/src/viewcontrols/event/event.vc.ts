@@ -1,6 +1,8 @@
 import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
+import FanViewBandProfileViewControl from '../../viewcontrols/fanviewbandprofile/fanviewbandprofile.vc';
+
 
 export default class EventViewControl extends BaseViewControl {
     templateString: string = require('./event.vc.html');
@@ -75,6 +77,14 @@ export default class EventViewControl extends BaseViewControl {
     }
     cancel() {
         this.context.modal = false;
+    }
+    
+    viewProfile() {
+       this.navigator.navigate(FanViewBandProfileViewControl, {
+           parameters: {
+               key: this.context.eventData.bandKey
+           }
+       })
     }
 }
 
