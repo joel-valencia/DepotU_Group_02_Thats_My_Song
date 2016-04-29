@@ -8,7 +8,12 @@ export default class SessionService extends BaseService {
     }
     
     checkLoggedInBand() {
-        return this.storage.getItem("loggedInBandKey");
+        if (this.storage.getItem("loggedInBandKey") === null) {
+            return "null"
+        } else {
+            return this.storage.getItem("loggedInBandKey");
+        }
+        
     }
     
     logInBand(key:string) {
