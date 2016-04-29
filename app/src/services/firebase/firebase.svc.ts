@@ -168,7 +168,7 @@ export default class FirebaseService extends BaseService {
     updateInfo(key: string, newInfo: {bandName: string}) {
         return new this.Promise((fulfill, reject) => {
             try {
-                var requestsFirebase = new Firebase('https://song-requests.firebaseio.com');
+                var requestsFirebase = new Firebase(this.host);
                 var bandFirebase = requestsFirebase.child('bands/' + key);
                 
                 bandFirebase.update(newInfo);
@@ -288,7 +288,7 @@ export default class FirebaseService extends BaseService {
     updateEventInfo(key: string, newEventInfo: {eventName: string}) {
         return new this.Promise((fulfill, reject) => {
             try {
-                var requestsFirebase = new Firebase('https://song-requests.firebaseio.com');
+                var requestsFirebase = new Firebase(this.host);
                 var bandFirebase = requestsFirebase.child('events/' + key);
                 
                 bandFirebase.update(newEventInfo);
@@ -304,7 +304,7 @@ export default class FirebaseService extends BaseService {
     eventActivate(eventKey:string) {
         return new this.Promise((fulfill, reject) => {
             try {
-                var requestsFirebase = new Firebase('https://song-requests.firebaseio.com');
+                var requestsFirebase = new Firebase(this.host);
                 var eventFirebase = requestsFirebase.child('events/' + eventKey);
                 
                 eventFirebase.update({
@@ -322,7 +322,7 @@ export default class FirebaseService extends BaseService {
     eventDeactivate(eventKey:string) {
         return new this.Promise((fulfill, reject) => {
             try {
-                var requestsFirebase = new Firebase('https://song-requests.firebaseio.com');
+                var requestsFirebase = new Firebase(this.host);
                 var eventFirebase = requestsFirebase.child('events/' + eventKey);
                 
                 eventFirebase.update({
