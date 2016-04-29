@@ -363,6 +363,7 @@ export default class FirebaseService extends BaseService {
                         this.bandGetInfo(eventsArray[index].bandKey).then((result:any) => {
                             // console.log(result.bandName);
                             eventsArray[counter].bandName = result.bandName;
+                            eventsArray[counter].bandImgUrl = result.bandImgUrl;
                             counter++
                             if (counter == eventsArray.length) {
                                 // reached last active event.  fulfill promise.

@@ -36,6 +36,7 @@
         "app/src/viewcontrols/bandrequestedsongs/bandrequestedsongs.vc.ts",
         "app/src/viewcontrols/base/base.vc.ts",
         "app/src/viewcontrols/event/event.vc.ts",
+        "app/src/viewcontrols/fanviewbandprofile/fanviewbandprofile.vc.ts",
         "app/src/viewcontrols/home/home.vc.ts",
         "app/src/viewcontrols/userfindevent/userfindevent.vc.ts",
         "app/src/viewcontrols/userrequestsong/userrequestsong.vc.ts"
