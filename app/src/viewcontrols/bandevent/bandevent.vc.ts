@@ -10,7 +10,8 @@ export default class BandEventViewControl extends BaseViewControl {
     context: any = {
         eventKey: "",
         eventData: {},
-        songRequests: []
+        songRequests: [],
+        counter: 0
     };
     
     constructor(private firebaseSvc:FirebaseService) {
@@ -42,6 +43,27 @@ export default class BandEventViewControl extends BaseViewControl {
             console.log("song requests: ", songRequestsArray);
             this.context.songRequests = songRequestsArray.reverse();
             
+            // don't flash on first load
+            if (this.context.counter !== 0) {
+                // wait so the elements can load
+                setTimeout(function() {
+                    var firstItem = document.getElementById("index-0");
+                    // hack to make it animate on subsequent loads
+                    firstItem.classList.remove("flashOnce");
+                    firstItem.offsetWidth;
+                    firstItem.classList.add("flashOnce");
+                }, 250);
+            }
+            
+            if (this.context.counter == 0) {
+                // wait so the elements can load
+                setTimeout(function() {
+                    var firstItem = document.getElementById("index-0");
+                    firstItem.style.maxHeight = "1000px";
+                }, 250);
+            }
+            
+            this.context.counter++;
         });
     }
 }

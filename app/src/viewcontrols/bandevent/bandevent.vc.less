@@ -37,6 +37,26 @@
         margin-top: 0.4em;
         margin-bottom: 0.2em;
     }
+    
+    .flashOnce {
+        animation-name: flash;
+        animation-duration: 2s;
+        animation-iteration-count: 1;
+    }
+    
+    #index-0 {
+        overflow: hidden;
+    }
+}
+
+@keyframes flash {
+    from {
+        background-color: #fe6b44;
+    }
+    
+    to {
+        background-color: #ddd;
+    }
 }
 
 @media screen and (min-width: 600px) {
