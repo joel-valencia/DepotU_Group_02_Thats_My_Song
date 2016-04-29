@@ -11,5 +11,5 @@ export default class BaseService {
 	protected Promise: async.IPromise;
 	protected utils: Utils;
 
-    host: string = 'my-host';
+    host: string = 'https://song-requests.firebaseio.com';
 }

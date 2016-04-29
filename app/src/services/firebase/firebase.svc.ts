@@ -17,7 +17,7 @@ export default class FirebaseService extends BaseService {
                     // username doesn't exist.  add user to firebase and fulfill promise.
                     console.log(err);
                     if (err == "user not found") {
-                        var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                        var requestsFirebase = new Firebase(this.host);
                         var bandsFirebase = requestsFirebase.child("bands");
                         
                         var newUserRef = bandsFirebase.push(newUser);
@@ -38,7 +38,7 @@ export default class FirebaseService extends BaseService {
     bandLogin(username:string) {
         return new this.Promise((fulfill, reject) => {
             try {
-                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var requestsFirebase = new Firebase(this.host);
                 var bandsFirebase = requestsFirebase.child("bands");
 
                 bandsFirebase.once("value", (snapshot: any) => {
@@ -65,7 +65,7 @@ export default class FirebaseService extends BaseService {
     bandGetInfo(key: string) {
         return new this.Promise((fulfill, reject) => {
             try {
-                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var requestsFirebase = new Firebase(this.host);
                 var bandFirebase = requestsFirebase.child("bands/" + key);
 
                 bandFirebase.once("value", (snapshot: any) => {                 
@@ -84,7 +84,7 @@ export default class FirebaseService extends BaseService {
     bandGetSongList(key:string) {
         return new this.Promise((fulfill, reject) => {
             try {
-                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var requestsFirebase = new Firebase(this.host);
                 var bandFirebase = requestsFirebase.child("bands/" + key);
 
                 bandFirebase.once("value", (snapshot: any) => {
@@ -126,7 +126,7 @@ export default class FirebaseService extends BaseService {
         return new this.Promise((fulfill, reject) => {
             try {
 
-                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var requestsFirebase = new Firebase(this.host);
                 var bandFirebase = requestsFirebase.child("bands/" + key);
                 var songListFirebase = bandFirebase.child("songList");
                 
@@ -149,7 +149,7 @@ export default class FirebaseService extends BaseService {
         return new this.Promise((fulfill, reject) => {
             try {
 
-                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var requestsFirebase = new Firebase(this.host);
                 var songRef = requestsFirebase.child("bands/" + bandKey + "/songList/" + songKey);
                 
                 songRef.set(null);
@@ -188,7 +188,7 @@ export default class FirebaseService extends BaseService {
                 console.log(newEvent);
                 
                 // add to events section of database
-                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var requestsFirebase = new Firebase(this.host);
                 var eventsFirebase = requestsFirebase.child("events");
                 var newEventRef = eventsFirebase.push(newEvent);
                 var newEventKey = newEventRef.key();
@@ -211,7 +211,7 @@ export default class FirebaseService extends BaseService {
         return new this.Promise((fulfill, reject) => {
             try {
                 // get list of event keys for band
-                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var requestsFirebase = new Firebase(this.host);
                 var bandEventKeysFirebase = requestsFirebase.child("bands/" + bandKey + "/bandEventKeys");
 
                 bandEventKeysFirebase.once("value", (snapshot: any) => {
@@ -264,7 +264,7 @@ export default class FirebaseService extends BaseService {
     getEventInfo(eventKey:string) {
         return new this.Promise((fulfill, reject) => {
             try {
-                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var requestsFirebase = new Firebase(this.host);
                 var eventFirebase = requestsFirebase.child("events/" + eventKey);
 
                 eventFirebase.once("value", (snapshot: any) => {  
@@ -340,7 +340,7 @@ export default class FirebaseService extends BaseService {
     getAllActiveEvents() {
         return new this.Promise((fulfill, reject) => {
             try {
-                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var requestsFirebase = new Firebase(this.host);
                 var eventFirebase = requestsFirebase.child("events");
 
                 eventFirebase.orderByChild("eventActive").equalTo(true).once("value", (snapshot: any) => {
@@ -388,7 +388,7 @@ export default class FirebaseService extends BaseService {
         return new this.Promise((fulfill, reject) => {
             try {
 
-                var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+                var requestsFirebase = new Firebase(this.host);
                 var songRequestsFirebase = requestsFirebase.child("events/" + eventKey + "/songRequests");
                 
                 var newRequest = {
