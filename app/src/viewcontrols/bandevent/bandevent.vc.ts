@@ -40,7 +40,8 @@ export default class BandEventViewControl extends BaseViewControl {
             }
             
             console.log("song requests: ", songRequestsArray);
-            this.context.songRequests = songRequestsArray;
+            this.context.songRequests = songRequestsArray.reverse();
+            
         });
     }
 }
