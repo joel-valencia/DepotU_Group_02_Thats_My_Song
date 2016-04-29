@@ -1,6 +1,7 @@
 import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import FirebaseService from '../../services/firebase/firebase.svc';
+import BaseService from '../../services/base/base.svc';
 
 declare var Firebase:any;
 
@@ -14,7 +15,7 @@ export default class BandEventViewControl extends BaseViewControl {
         counter: 0
     };
     
-    constructor(private firebaseSvc:FirebaseService) {
+    constructor(private firebaseSvc:FirebaseService, private baseSvc:BaseService) {
         super();
     }
     
@@ -29,7 +30,7 @@ export default class BandEventViewControl extends BaseViewControl {
         });
         
         // retrieve event requests every time they're added
-        var requestsFirebase = new Firebase("https://song-requests.firebaseio.com");
+        var requestsFirebase = new Firebase(this.baseSvc.host);
         var songRequestsFirebase = requestsFirebase.child("events/" + this.context.eventKey + "/songRequests");
 
         songRequestsFirebase.on("value", (snapshot: any) => {  
@@ -55,17 +56,9 @@ export default class BandEventViewControl extends BaseViewControl {
                 }, 250);
             }
             
-            if (this.context.counter == 0) {
-                // wait so the elements can load
-                setTimeout(function() {
-                    var firstItem = document.getElementById("index-0");
-                    firstItem.style.maxHeight = "1000px";
-                }, 250);
-            }
-            
             this.context.counter++;
         });
     }
 }
 
-register.viewControl('bandevent-vc', BandEventViewControl, [FirebaseService]);
+register.viewControl('bandevent-vc', BandEventViewControl, [FirebaseService, BaseService]);
